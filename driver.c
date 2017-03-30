@@ -1,4 +1,9 @@
-
+#define CRT SECURE NO WARNINGS 1
+//include files
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
+#include <stdlib.h>
 int findCourse(Graph graph, char szCourseId[])
 {
   int i;
