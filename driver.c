@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include "cs2123p5.h"
 int findCourse(Graph graph, char szCourseId[])
 {
   int i;
