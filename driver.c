@@ -72,7 +72,9 @@ int findCourse(Graph graph, char szCourseId[])
       return i;
     }
   }
-  return 0;
+  /*we want this to be NULL not 0 if 0 that means it would be the vertexM[0] we want to use a 
+  conditional for if (!= NULL) or if (== NULL)*/
+  return NULL;
 }
 /*************************************************/
 char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
