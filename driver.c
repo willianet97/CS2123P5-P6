@@ -72,7 +72,7 @@ int findCourse(Graph graph, char szCourseId[])
       return i;
     }
   }
-  return NULL;
+  return 0;
 }
 /*************************************************/
 char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
