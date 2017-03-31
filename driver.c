@@ -7,11 +7,59 @@
 #include "cs2123p5.h"
 void main()
 {
-  char *pszCOMMAND;
-  
-  getToken(pszCOMMAND, )
+  int iScanfCnt = 0;
+  char szName;
+  char szCommand;
   char szInputBuffer[100];
+  Graph graph = malloc(sizeof(GraphImp));
   while(fgets(szInputBuffer, 100, stdin) != NULL)
+  {
+   getToken(&szInputBuffer, szCommand, 50);
+    if(strcmp(szCommand, “COURSE”))
+    {
+       iScanfCnt = sscanf(szInputBuffer, %s %s,
+          , graph->vertexM.szCourseId
+          , graph->vertexM.szCourseName);
+      graph->vertexM->prereqList.iPrereqVertex = FALSE;
+      strcpy(graph->vertexM.szCourseId, szName);
+    }
+    if(strcmp(szCommand, “PREREQ”))
+    {
+       findCourse(graph, szName);
+       iScanfCnt = sscanf(szInputBuffer, %s,
+       graph->vertexM.szCourseId);
+       
+    }   
+   if(strcmp(szCommand, “PRTONE”))
+    {
+       sscanf()
+    }
+if(strcmp(szCommand, “PRTALL”))
+    {
+      
+    }
+if(strcmp(szCommand, “PRTSUCC”))
+    {
+       sscanf()
+    }
+if(strcmp(szCommand, “MAXCHAIN”))
+    {
+       sscanf()
+    }
+if(strcmp(szCommand, “PRTLONGS”))
+    {
+       sscanf()
+    }
+if(strcmp(szCommand, “PRTSINKS”))
+    {
+       sscanf()
+    }
+if(strcmp(szCommand, “PRTSOURCES”))
+    {
+       sscanf()
+    }
+
+  }
 }
 /************************************************/
 int findCourse(Graph graph, char szCourseId[])
