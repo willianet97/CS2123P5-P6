@@ -20,7 +20,7 @@ void printOne(Graph graph, int iVertex)
          ,0 //te
          ,graph->vertexM[iVertex].szCourseId
          ,graph->vertexM[iVertex].szCourseName
-         ,graph->vertexM[iVertex]
+         ,graph->vertexM[iVertex]->prereqList
 }
 /*********************************/
 void printSources(Graph graph)
@@ -28,7 +28,10 @@ void printSources(Graph graph)
   int i;
   for (i = 0; i < graph->iNumVertices; i++)
   {
-    if (vertexM[i]
+    if (graph->vertexM[i]->prereqList.iPrereqVertex == FALSE)
+    {
+      printf()
+    }
 }
 /*********************************/
 void printSinks(Graph graph)
@@ -36,5 +39,9 @@ void printSinks(Graph graph)
   int i;
   for (i = 0; i < graph->iNumVertices; i++)
   {
+    if (graph->vertexM[i]->succesorList.iSuccVertex == FALSE)
+    {
+      printf()
+    }
 }
 
