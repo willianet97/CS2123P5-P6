@@ -14,51 +14,54 @@ void main()
   Graph graph = malloc(sizeof(GraphImp));
   while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
-   getToken(&szInputBuffer, szCommand, 50);
-    if(strcmp(szCommand, “COURSE”))
+    //the first argument here doesn't work so i dont know 
+    //how to use getToken and sscanf at the same time
+    getToken(&szInputBuffer, szCommand, 50);
+    //this if saves the current course in case a prereq
+    //comes after it in the input so it can search for it
+    //and add it to the graph with the right prereqs and successors
+    if(strcmp(szCommand, “COURSE”) == 0)
     {
-       iScanfCnt = sscanf(szInputBuffer, %s %s,
+       iScanfCnt = sscanf(szInputBuffer, %s %s
           , graph->vertexM.szCourseId
           , graph->vertexM.szCourseName);
       graph->vertexM->prereqList.iPrereqVertex = FALSE;
-      strcpy(graph->vertexM.szCourseId, szName);
+      strcpy(graph->vertexM[].szCourseId, szName);
     }
-    if(strcmp(szCommand, “PREREQ”))
+    
+    if(strcmp(szCommand, “PREREQ”) == 0)
     {
        findCourse(graph, szName);
-       iScanfCnt = sscanf(szInputBuffer, %s,
-       graph->vertexM.szCourseId);
+       iScanfCnt = sscanf(szInputBuffer, %s
+          , graph->vertexM[].szCourseId);
        
     }   
-   if(strcmp(szCommand, “PRTONE”))
+    if(strcmp(szCommand, “PRTONE”) == 0)
     {
-       sscanf()
+       iScanfCnt = sscanf(szInputBuffer, %s,
+           , );
     }
-if(strcmp(szCommand, “PRTALL”))
+    if(strcmp(szCommand, “PRTALL”) == 0)
     {
-      
     }
-if(strcmp(szCommand, “PRTSUCC”))
+    if(strcmp(szCommand, “PRTSUCC”) == 0)
     {
-       sscanf()
+       sscanf();
     }
-if(strcmp(szCommand, “MAXCHAIN”))
+    if(strcmp(szCommand, “MAXCHAIN”) == 0)
     {
-       sscanf()
+       sscanf();
     }
-if(strcmp(szCommand, “PRTLONGS”))
+    if(strcmp(szCommand, “PRTLONGS”) == 0)
     {
-       sscanf()
+       sscanf();
     }
-if(strcmp(szCommand, “PRTSINKS”))
+    if(strcmp(szCommand, “PRTSINKS”) == 0)
     {
-       sscanf()
     }
-if(strcmp(szCommand, “PRTSOURCES”))
+    if(strcmp(szCommand, “PRTSOURCES”) == 0)
     {
-       sscanf()
     }
-
   }
 }
 /************************************************/
