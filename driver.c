@@ -8,9 +8,13 @@
 void main()
 {
   int iScanfCnt = 0;
-  char szName;
-  char szCommand;
+  char szName[];
+  char szCommand[];
   char szInputBuffer[100];
+  char szPrintname[];
+  int iPrevVertex; // dummy variable
+  int iPrintThis; // dummy variable that is only different for avoiding confusion
+  int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = malloc(sizeof(GraphImp));
   while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
@@ -22,46 +26,66 @@ void main()
     //and add it to the graph with the right prereqs and successors
     if(strcmp(szCommand, “COURSE”) == 0)
     {
-       iScanfCnt = sscanf(szInputBuffer, %s %s
-          , graph->vertexM.szCourseId
-          , graph->vertexM.szCourseName);
-      graph->vertexM->prereqList.iPrereqVertex = FALSE;
-      strcpy(graph->vertexM[].szCourseId, szName);
+      iScanfCnt = sscanf(szInputBuffer, %s %s
+         , graph->vertexM[iVertexCnt].szCourseId
+         , graph->vertexM[iVertexCnt].szCourseName);
+       graph->vertexM[iVertexCnt]->prereqList.iPrereqVertex = FALSE;
+       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
     }
-    
+    //prereq should already exist otherwise this will cause an error
     if(strcmp(szCommand, “PREREQ”) == 0)
     {
-       findCourse(graph, szName);
-       iScanfCnt = sscanf(szInputBuffer, %s
-          , graph->vertexM[].szCourseId);
-       
+      iPrevVertex = findCourse(graph, szName);
+      iScanfCnt = sscanf(szInputBuffer, %s
+         , graph->vertexM[iVertexCnt].szCourseId);
+      //assigns prereq to have the successor of the next course
+      graph->vertexM[iVertexCnt]->successorList.iSuccVertex = iPrevVertex;
+      //assigns successor to have correct prereq
+      graph->vertexM[iPrevVertex]->prereqList.iPrereqVertex = iVertexCnt;
     }   
     if(strcmp(szCommand, “PRTONE”) == 0)
     {
-       iScanfCnt = sscanf(szInputBuffer, %s,
-           , );
+      iScanfCnt = sscanf(szInputBuffer, %s,
+          , szPrintname);
+      iPrintThis = findCourse(graph, szName);
+      //calls printone function
+      
     }
+    //just calls print function, no scanf required
     if(strcmp(szCommand, “PRTALL”) == 0)
     {
     }
     if(strcmp(szCommand, “PRTSUCC”) == 0)
     {
-       sscanf();
+      iScanfCnt = sscanf(szInputBuffer, %s,
+          , szPrintname);
+      iPrintThis = findCourse(graph, szName);
+      //calls print successor
     }
     if(strcmp(szCommand, “MAXCHAIN”) == 0)
     {
-       sscanf();
+      iScanfCnt = sscanf(szInputBuffer, %s,
+          , szPrintname);
+      iPrintThis = findCourse(graph, szName);
+      //calls max chain
     }
     if(strcmp(szCommand, “PRTLONGS”) == 0)
     {
-       sscanf();
+      iScanfCnt = sscanf(szInputBuffer, %s,
+          , szPrintname);
+      iPrintThis = findCourse(graph, szName);
+      //calls print longs
     }
+    //just calls print function, no scanf required
     if(strcmp(szCommand, “PRTSINKS”) == 0)
     {
     }
+    //just calls print function, no scanf required
     if(strcmp(szCommand, “PRTSOURCES”) == 0)
     {
     }
+    graph->iNumVertices++;
+    iVertexCnt++;
   }
 }
 /************************************************/
