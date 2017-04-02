@@ -3,7 +3,7 @@ void printAllInList(Graph graph)
   EdgeNode *p;
   int iCount = 0;
   int i;
-  int i2;
+  int iVertex;
   /*header*/
   printf("%s %s %s %s %s %s"
          ,"Vx"
@@ -21,20 +21,23 @@ void printAllInList(Graph graph)
          ,graph->vertexM[i].szCourseName);
      for (p = graph->vertexM[i]->prereqList; p != NULL; p = p->pNextEdge)
      {
-       i2 = graph->vertexM[i]->prereqList.iPrereqVertex;
+       iVertex = graph->vertexM[i]->prereqList.iPrereqVertex;
        printf("%s"
-              ,graph->vertexM[i].szCourseId);
+              ,graph->vertexM[iVertex].szCourseId);
        iCount++;
      }
-      for (i = iCount; i <= 4; i++)
-      {
-        printf("...");
-      }
+     if (iCount < 4)
+     {
+        for (i = iCount; i <= 4; i++)
+        {
+          printf("...");
+        }
+     }
      for (p = graph->vertexM[i]->successorList; p != NULL; p = p->pNextEdge)
      {
-       i2 = graph->vertexM[i]->prereqList.iSuccVertex;
+       iVertex = graph->vertexM[i]->prereqList.iSuccVertex;
        printf("%s"
-              ,graph->vertexM[i].szCourseId);
+              ,graph->vertexM[iVertex].szCourseId);
   }
          
 }
@@ -66,9 +69,12 @@ void printOne(Graph graph, int iVertex)
            ,graph->vertexM[i].szCourseId);
     iCount++
   }
-  for (i = iCount; i <= 4; i++)
+  if (iCount < 4)
   {
-    printf("...");
+    for (i = iCount; i <= 4; i++)
+    {
+      printf("...");
+    }
   }
   for (p = graph->vertexM[iVertex]->successorList; p != NULL; p = p->pNextEdge)
   {
