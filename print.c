@@ -1,13 +1,27 @@
 void printAllInList(Graph graph)
 {
+  EdgeNode *p;
   int i;
+  int i2;
   for (i = 0; i < graph->iNumVertices; i++)
   {
     printf("%d %d %s %s %s %s"
          ,i
          ,0 //te
          ,graph->vertexM[i].szCourseId
-         ,graph->vertexM[i].szCourseName
+         ,graph->vertexM[i].szCourseName);
+     for (p = graph->vertexM[i]->prereqList; p != NULL; p = p->pNextEdge)
+     {
+    i2 = graph->vertexM[i]->prereqList.iPrereqVertex;
+    printf("%s"
+           ,graph->vertexM[i].szCourseId);
+     }
+     for (p = graph->vertexM[i]->successorList; p != NULL; p = p->pNextEdge)
+     {
+    i2 = graph->vertexM[i]->prereqList.iSuccVertex;
+    printf("%s"
+           ,graph->vertexM[i].szCourseId);
+  }
          
 }
 /*********************************/
