@@ -26,7 +26,7 @@ void main()
     //and add it to the graph with the right prereqs and successors
     if(strcmp(szCommand, “COURSE”) == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, %s %s
+      iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , graph->vertexM[iVertexCnt].szCourseId
          , graph->vertexM[iVertexCnt].szCourseName);
        graph->vertexM[iVertexCnt]->prereqList.iPrereqVertex = FALSE;
@@ -36,7 +36,7 @@ void main()
     if(strcmp(szCommand, “PREREQ”) == 0)
     {
       iPrevVertex = findCourse(graph, szName);
-      iScanfCnt = sscanf(szInputBuffer, %s
+      iScanfCnt = sscanf(szInputBuffer, "%s"
          , graph->vertexM[iVertexCnt].szCourseId);
       //assigns prereq to have the successor of the next course
       graph->vertexM[iVertexCnt]->successorList.iSuccVertex = iPrevVertex;
@@ -45,7 +45,7 @@ void main()
     }   
     if(strcmp(szCommand, “PRTONE”) == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, %s,
+      iScanfCnt = sscanf(szInputBuffer, "%s",
           , szPrintname);
       iPrintThis = findCourse(graph, szName);
       //calls printone function
@@ -57,21 +57,21 @@ void main()
     }
     if(strcmp(szCommand, “PRTSUCC”) == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, %s,
+      iScanfCnt = sscanf(szInputBuffer, "%s",
           , szPrintname);
       iPrintThis = findCourse(graph, szName);
       //calls print successor
     }
     if(strcmp(szCommand, “MAXCHAIN”) == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, %s,
+      iScanfCnt = sscanf(szInputBuffer, "%s",
           , szPrintname);
       iPrintThis = findCourse(graph, szName);
       //calls max chain
     }
     if(strcmp(szCommand, “PRTLONGS”) == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, %s,
+      iScanfCnt = sscanf(szInputBuffer, "%s",
           , szPrintname);
       iPrintThis = findCourse(graph, szName);
       //calls print longs
