@@ -1,6 +1,7 @@
 void printAllInList(Graph graph)
 {
   EdgeNode *p;
+  int iCount = 0;
   int i;
   int i2;
   /*header*/
@@ -20,15 +21,20 @@ void printAllInList(Graph graph)
          ,graph->vertexM[i].szCourseName);
      for (p = graph->vertexM[i]->prereqList; p != NULL; p = p->pNextEdge)
      {
-    i2 = graph->vertexM[i]->prereqList.iPrereqVertex;
-    printf("%s"
-           ,graph->vertexM[i].szCourseId);
+       i2 = graph->vertexM[i]->prereqList.iPrereqVertex;
+       printf("%s"
+              ,graph->vertexM[i].szCourseId);
+       iCount++;
      }
+      for (i = iCount; i <= 4; i++)
+      {
+        printf("...");
+      }
      for (p = graph->vertexM[i]->successorList; p != NULL; p = p->pNextEdge)
      {
-    i2 = graph->vertexM[i]->prereqList.iSuccVertex;
-    printf("%s"
-           ,graph->vertexM[i].szCourseId);
+       i2 = graph->vertexM[i]->prereqList.iSuccVertex;
+       printf("%s"
+              ,graph->vertexM[i].szCourseId);
   }
          
 }
@@ -38,6 +44,7 @@ iVertex = findCourse(graph, szCourseId - what was grabbed from sscanf)*********/
 void printOne(Graph graph, int iVertex)
 {
   EdgeNode *p;
+  int iCount = 0;
   int i;
   /*header*/
   printf("%s %s %s %s %s %s"
@@ -57,6 +64,11 @@ void printOne(Graph graph, int iVertex)
     i = graph->vertexM[iVertex]->prereqList.iPrereqVertex;
     printf("%s"
            ,graph->vertexM[i].szCourseId);
+    iCount++
+  }
+  for (i = iCount; i <= 4; i++)
+  {
+    printf("...");
   }
   for (p = graph->vertexM[iVertex]->successorList; p != NULL; p = p->pNextEdge)
   {
