@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "cs2123p5.h"
-void main()
+int main(int argc, char *argv[])
 {
   int iScanfCnt = 0;
   char szName[];
@@ -17,7 +17,7 @@ void main()
   int iCourse; // dummy variable
   int iPrintThis; // dummy variable that is only different for avoiding confusion
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
-  Graph graph = malloc(sizeof(GraphImp));
+  Graph graph = newGraph();
   while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
     //the first argument here doesn't work so i dont know 
