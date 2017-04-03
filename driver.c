@@ -186,3 +186,18 @@ void insertCourse(Graph g, int iVertex)
   EdgeNode *p = allocateEdgeNode();
   graph->vertexM[i].successorList = p;
 }
+/***************************************/
+void ErrExit(int iexitRC, char szFmt[], ... )
+{
+    va_list args;               // This is the standard C variable argument list type
+    va_start(args, szFmt);      // This tells the compiler where the variable arguments
+                                // begins.  They begin after szFmt.
+    printf("ERROR: ");
+    vprintf(szFmt, args);       // vprintf receives a printf format string and  a
+                                // va_list argument
+    va_end(args);               // let the C environment know we are finished with the
+                                // va_list argument
+    printf("\n\tEncountered in file %s\n", __FILE__);  // this 2nd arg is filled in by
+                                // the pre-compiler
+    exit(iexitRC);
+}
