@@ -4,16 +4,25 @@ int maxChainLength(Graph graph, int iVertex)
     EdgeNode *e;
     int iCount = 0;
     // traverse to the adjacent vertices
-    for (e = g->vertexM[iVertex].successorList; e != NULL; 
+    for (e = graph->vertexM[iVertex].successorList; e != NULL; 
          e = e->pNextEdge)
     {
-        iCount += countG(g, e->iVertex);
+        iCount += countG(graph, e->iVertex);
     }
     return iCount;
 }
 
 }
 /***********************************************************/
+/*maxchain is always called before this function
+use return of maxchain as iLongLength*/
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength)
 {
+  EdgeNode *e;
+  for (e = graph->vertexM[iVertex].successorList; e!= NULL;
+       e = e->pNextEdge)
+  {
+    iLevel++;
+    printLongChains(graph, iVertex, pathM[iLevel], iLongLength);
+  }
 }
