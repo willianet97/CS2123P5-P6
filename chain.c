@@ -10,7 +10,7 @@ int maxChainLength(Graph graph, int iVertex)
      e = e->pNextEdge)
   {
     //within successor lists it takes each path
-    iCount += countG(graph, e->iVertex);
+    iCount += countG(graph, e->iSuccVertex);
     if(iCount >= iFirst)
       iFirst = iCount;
     //somehow this should be reset
