@@ -10,26 +10,28 @@ int main(int argc, char *argv[])
   int iScanfCnt = 0;
   char szName[50];
   char szCommand[50];
-  char *pszInputBuffer[100];
+  char szInputBuffer[100];
   char szPrereq[50];
+  char szDummy;//this takes course and will exist for each sscanf
   char szPrintname[50];
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
-  while(fgets(*pszInputBuffer, 100, stdin) != NULL)
+  while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
     //the first argument here doesn't work so i dont know 
     //how to use getToken and sscanf at the same time
-    getToken(*pszInputBuffer, szCommand, 50);
+    getToken(szInputBuffer, szCommand, 50);
     
     //this if saves the current course in case a prereq
     //comes after it in the input so it can search for it
     //and add it to the graph with the right prereqs and successors
     if(strcmp(szCommand, "COURSE") == 0)
     {
-      iScanfCnt = sscanf(*pszInputBuffer, "%s %s"
+      iScanfCnt = sscanf(szInputBuffer, "%s %s %s"
+         , szDummy
          , graph->vertexM[iVertexCnt].szCourseId
          , graph->vertexM[iVertexCnt].szCourseName);
-      if(iScanfCnt < 2)
+      if(iScanfCnt < 3)
         printf("Course input invalid\n");
       graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = FALSE;
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
@@ -38,9 +40,10 @@ int main(int argc, char *argv[])
     //prereq should already exist otherwise this will cause an error
     if(strcmp(szCommand, "PREREQ") == 0)
     {
-      iScanfCnt = sscanf(*pszInputBuffer, "%s"
+      iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
          , szPrereq);
-      if(iScanfCnt < 1)
+      if(iScanfCnt < 2)
         printf("Prereq input invalid\n");
       //takes prereq and course subscripts and inserts them
       insertPrereq(graph, findCourse(graph, szPrereq), findCourse(graph, szName));
@@ -48,9 +51,10 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "PRTONE") == 0)
     {
-      iScanfCnt = sscanf(*pszInputBuffer, "%s"
-          , szPrintname);
-      if(iScanfCnt < 1)
+      iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
+         , szPrintname);
+      if(iScanfCnt < 2)
         printf("Printone input invalid\n");
       //calls printone function
       printOne(graph, findCourse(graph, szPrintname));  
@@ -64,9 +68,10 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "PRTSUCC") == 0)
     {
-      iScanfCnt = sscanf(*pszInputBuffer, "%s"
-          , szPrintname);
-      if(iScanfCnt < 1)
+      iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
+         , szPrintname);
+      if(iScanfCnt < 2)
         printf("Print successor input invalid\n");
       //calls print successor
       //pretty sure this is for successor
@@ -75,9 +80,10 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "MAXCHAIN") == 0)
     {
-      iScanfCnt = sscanf(*pszInputBuffer, "%s"
-          , szPrintname);
-      if(iScanfCnt < 1)
+      iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
+         , szPrintname);
+      if(iScanfCnt < 2)
         printf("Max Chain input invalid\n");
       //calls max chain
       maxChain(graph, findCourse(graph, szPrintname));
@@ -85,9 +91,10 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "PRTLONGS") == 0)
     {
-      iScanfCnt = sscanf(*pszInputBuffer, "%s"
-          , szPrintname);
-      if(iScanfCnt < 1)
+      iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
+         , szPrintname);
+      if(iScanfCnt < 2)
         printf("Print long input invalid");
       //calls print longs
       printLongChains(graph, findCourse(graph, szPrintname), int pathM[]
@@ -109,7 +116,7 @@ int main(int argc, char *argv[])
     if(strcmp(szCommand, "*"))
     {
       char szComments[50];
-      iScanfCnt = sscanf(*pszInputBuffer, "%s", szComments);
+      iScanfCnt = sscanf(szInputBuffer, "%s['\n]", szComments);
     }
     graph->iNumVertices++;
     iVertexCnt++;
