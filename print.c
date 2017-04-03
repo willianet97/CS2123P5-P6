@@ -26,7 +26,7 @@ void printAllInList(Graph graph)
      for (p = graph->vertexM[i].prereqList; p != NULL; p = p->pNextEdge)
      {
        //iVertex used to hold the vertex number of the prereq
-       iVertex = graph->vertexM[i].prereqList.iPrereqVertex;
+       iVertex = graph->vertexM[i].prereqList->iPrereqVertex;
        //prints the prereq
        printf("%s"
               ,graph->vertexM[iVertex].szCourseId);
@@ -46,7 +46,7 @@ void printAllInList(Graph graph)
     //may need tweaking or reworking
      for (p = graph->vertexM[i].successorList; p != NULL; p = p->pNextEdge)
      {
-       iVertex = graph->vertexM[i].prereqList.iSuccVertex;
+       iVertex = graph->vertexM[i].prereqList->iSuccVertex;
        printf("%s\n"
               ,graph->vertexM[iVertex].szCourseId);
   }
@@ -79,7 +79,7 @@ void printOne(Graph graph, int iVertex)
   for (p = graph->vertexM[iVertex].prereqList; p != NULL; p = p->pNextEdge)
   {
     //stores the vertex of the prereq to be printed
-    i = graph->vertexM[iVertex].prereqList.iPrereqVertex;
+    i = graph->vertexM[iVertex].prereqList->iPrereqVertex;
     printf("%s"
            ,graph->vertexM[i].szCourseId);
     //increment iCount for each prereq
@@ -98,7 +98,7 @@ void printOne(Graph graph, int iVertex)
   for (p = graph->vertexM[iVertex].successorList; p != NULL; p = p->pNextEdge)
   {
     //stores vertex of successsor
-    i = graph->vertexM[iVertex].prereqList.iSuccVertex;
+    i = graph->vertexM[iVertex].prereqList->iSuccVertex;
     printf("%s\n"
            ,graph->vertexM[i].szCourseId);
   }
@@ -115,7 +115,7 @@ void printSources(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //conditional if the vertex has no prereq print that vertex
-    if (graph->vertexM[i].prereqList.iPrereqVertex == FALSE)
+    if (graph->vertexM[i].prereqList->iPrereqVertex == FALSE)
     {
       printf("%s %s\n"
             ,graph->vertexM[i].szCourseId
@@ -134,7 +134,7 @@ void printSinks(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //if the vertex has no successor print that vertex
-    if (graph->vertexM[i].succesorList.iSuccVertex == FALSE)
+    if (graph->vertexM[i].successorList->iSuccVertex == FALSE)
     {
       printf("%s %s\n"
             ,graph->vertexM[i].szCourseId
@@ -151,7 +151,7 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
   int iVertexSucc = 0;  //local variable used to hold successor vertex number
   EdgeNode *p;  //local pointer variable used to traverse adjacency list
   //for loop used to traverse successor list of specified vertex
-  for (p = graph->vertexM[iVertex].succesorList; p != NULL;
+  for (p = graph->vertexM[iVertex].successorList; p != NULL;
     p = p->pNextEdge)
   {
     //prints appropriate number of indentations
@@ -160,7 +160,7 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
       printf("  ");
     }
     //assigns iVertexSucc to the successor vertex of the specified original vertex and prints
-    iVertexSucc = graph->vertexM[iVertex].succesorList.iSuccVertex;
+    iVertexSucc = graph->vertexM[iVertex].successorList->iSuccVertex;
     printf("%s %s"
            ,graph->vertexM[iVertexSucc].szCourseId
            ,graph->vertexM[iVertexSucc].szCourseName);
