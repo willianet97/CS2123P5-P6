@@ -8,14 +8,11 @@
 int main(int argc, char *argv[])
 {
   int iScanfCnt = 0;
-  char szName[];
-  char szCommand[];
+  char szName[50];
+  char szCommand[50];
   char szInputBuffer[100];
-  char szPrintname[];
-  char szPrereq[];
-  int iPrereq;
-  int iCourse; // dummy variable
-  int iPrintThis; // dummy variable that is only different for avoiding confusion
+  char szPrereq[50];
+  char szPrintname[50];
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
   while(fgets(szInputBuffer, 100, stdin) != NULL)
@@ -51,7 +48,7 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "PRTONE") == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, "%s",
+      iScanfCnt = sscanf(szInputBuffer, "%s"
           , szPrintname);
       if(iScanfCnt < 1)
         printf("Printone input invalid\n");
@@ -67,7 +64,7 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "PRTSUCC") == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, "%s",
+      iScanfCnt = sscanf(szInputBuffer, "%s"
           , szPrintname);
       if(iScanfCnt < 1)
         printf("Print successor input invalid\n");
@@ -78,7 +75,7 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "MAXCHAIN") == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, "%s",
+      iScanfCnt = sscanf(szInputBuffer, "%s"
           , szPrintname);
       if(iScanfCnt < 1)
         printf("Max Chain input invalid\n");
@@ -88,7 +85,7 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "PRTLONGS") == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, "%s",
+      iScanfCnt = sscanf(szInputBuffer, "%s"
           , szPrintname);
       if(iScanfCnt < 1)
         printf("Print long input invalid");
@@ -110,7 +107,7 @@ int main(int argc, char *argv[])
     
     if(strcmp(szCommand, "*"))
     {
-      char szComments;
+      char szComments[50];
       iScanfCnt = sscanf(szInputBuffer, "%s", szComments);
     }
     graph->iNumVertices++;
