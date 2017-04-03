@@ -165,7 +165,8 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
            ,graph->vertexM[iVertexSucc].szCourseId
            ,graph->vertexM[iVertexSucc].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
-    printTraversal(graph, p->iVertex,iIndent+1)
+    //p->iSuccVertex may not be right
+    printTraversal(graph, p->iSuccVertex,iIndent+1)
   }
 }
 
