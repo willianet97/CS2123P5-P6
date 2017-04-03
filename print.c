@@ -49,8 +49,8 @@ void printAllInList(Graph graph)
        iVertex = graph->vertexM[i].prereqList->iSuccVertex;
        printf("%s\n"
               ,graph->vertexM[iVertex].szCourseId);
-  }
-         
+     }
+  }      
 }
 /*********************************/
 /*******requires a findCourse call to pass in iVertex******
@@ -121,6 +121,7 @@ void printSources(Graph graph)
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
+  }
 }
 /*********************************/
 void printSinks(Graph graph)
@@ -166,7 +167,7 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
            ,graph->vertexM[iVertexSucc].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
     //p->iSuccVertex may not be right
-    printTraversal(graph, p->iSuccVertex,iIndent+1)
+    printTraversal(graph, p->iSuccVertex,iIndent+1);
   }
 }
 
