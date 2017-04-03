@@ -3,11 +3,14 @@ int maxChainLength(Graph graph, int iVertex)
   //still working on the basics of this one
     EdgeNode *e;
     int iCount = 0;
+  int iFirst =0;
     // traverse to the adjacent vertices
     for (e = graph->vertexM[iVertex].successorList; e != NULL; 
          e = e->pNextEdge)
     {
         iCount += countG(graph, e->iVertex);
+      if(iCount >= iFirst)
+        iFirst = iCount;
     }
     return iCount;
 }
