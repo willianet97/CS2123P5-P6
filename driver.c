@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
         printf("Course input invalid\n");
       graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = FALSE;
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
+      iVertexCnt++;
+      graph->iNumVertices++;
     }
     
     //prereq should already exist otherwise this will cause an error
@@ -118,8 +120,6 @@ int main(int argc, char *argv[])
       char szComments[50];
       iScanfCnt = sscanf(szInputBuffer, "%s['\n]", szComments);
     }
-    graph->iNumVertices++;
-    iVertexCnt++;
   }
 }
 /************************************************/
