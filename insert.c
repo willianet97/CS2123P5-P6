@@ -26,19 +26,17 @@ Graph newGraph()
    return g;
 }
 /************************** allocateEdgeNode ********************************
-EdgeNode *allocateEdgeNode(Graph g, int iPreValue, int iSuccValue)
+EdgeNode *allocateEdgeNode()
 Purpose:
-    Allocates a new edge node to insert in graph.
+    Allocates a new edge node.
 Parameters:
-    I Graph g         the graph
-    I int iPreValue   vertex of prereq to insert
-    I int iSuccValue  vertex of successor to insert
+    n/a
 Returns:
     A pointer to the new edge node.
 Notes:
     n/a
 **************************************************************************/
-EdgeNode *allocateEdgeNode(Graph g, int iPreValue, int iSuccValue)
+EdgeNode *allocateEdgeNode()
 {
   // allocate memory for an edge node
   EdgeNode *pNew;
@@ -51,9 +49,8 @@ EdgeNode *allocateEdgeNode(Graph g, int iPreValue, int iSuccValue)
   
   // assign empty values
   pNew->pNextEdge = NULL;
-  pNew->iPrereqVertex = iPreValue;
-  pNew->iSuccVertex = iSuccValue;
+  pNew->iPrereqVertex = -1;
+  pNew->iSuccVertex = -1;
    
   return pNew;
 }
-
