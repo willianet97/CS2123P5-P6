@@ -171,3 +171,11 @@ char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
     else
         return pszInputTxt + 1;
 }
+/**********************************/
+void insertCourse(Graph g, int iVertex)
+{
+  EdgeNode *e = allocateEdgeNode();
+  graph->vertexM[i].prereqList = e;
+  EdgeNode *p = allocateEdgeNode();
+  graph->vertexM[i].successorList = p;
+}
