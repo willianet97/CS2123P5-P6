@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
   char szCommand[50];
   char szInputBuffer[100];
   char szPrereq[50];
-  char szDummy;//this takes course and will exist for each sscanf
+  char szDummy[50];//this takes course and will exist for each sscanf
   char szPrintname[50];
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
@@ -33,8 +33,11 @@ int main(int argc, char *argv[])
          , graph->vertexM[iVertexCnt].szCourseName);
       if(iScanfCnt < 3)
         printf("Course input invalid\n");
-      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = FALSE;
+      //for some reason the compiler doesn't like this being set to false
+      //even though it is defined in the h
+      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = 0;
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
+      insertCourse(graph, iVertex);
       iVertexCnt++;
       graph->iNumVertices++;
     }
@@ -179,7 +182,7 @@ char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
         return pszInputTxt + 1;
 }
 /**********************************/
-void insertCourse(Graph g, int iVertex)
+void insertCourse(Graph graph, int iVertex)
 {
   EdgeNode *e = allocateEdgeNode();
   graph->vertexM[i].prereqList = e;
