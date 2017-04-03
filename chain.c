@@ -1,18 +1,24 @@
 int maxChainLength(Graph graph, int iVertex)
 {
   //still working on the basics of this one
-    EdgeNode *e;
-    int iCount = 0;
+  EdgeNode *e;
+  int iCount = 0;
   int iFirst =0;
-    // traverse to the adjacent vertices
-    for (e = graph->vertexM[iVertex].successorList; e != NULL; 
-         e = e->pNextEdge)
-    {
-        iCount += countG(graph, e->iVertex);
-      if(iCount >= iFirst)
-        iFirst = iCount;
-    }
-    return iCount;
+  // traverse to the adjacent vertices
+  //goes through successor lists
+  for (e = graph->vertexM[iVertex].successorList; e != NULL; 
+     e = e->pNextEdge)
+  {
+    //within successor lists it takes each path
+    iCount += countG(graph, e->iVertex);
+    if(iCount >= iFirst)
+      iFirst = iCount;
+    //somehow this should be reset
+    iCount--;
+    //but no quite like this because if it has more
+    //than one successor it subracts too many
+  }
+  return iFirst;
 }
 
 }
