@@ -1,7 +1,7 @@
 int maxChain(Graph graph, int iVertex)
 {
   //still working on the basics of this one
-  EdgeNode *e;
+  EdgeNode *e;// does this have to be malloced too? i'm suddenly forgetting the nitty gritty details
   int iCount = 0;
   int iFirst =0;
   // traverse to the adjacent vertices
@@ -20,12 +20,10 @@ int maxChain(Graph graph, int iVertex)
   }
   return iFirst;
 }
-
-}
 /***********************************************************/
 /*maxchain is always called before this function
 use return of maxchain as iLongLength*/
-
+//this also needs a path finder function
 /*function needs a lot of work just some rudimentary basics jotted down may even be wrong so far*/
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength)
 {
