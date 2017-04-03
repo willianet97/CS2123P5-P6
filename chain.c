@@ -16,6 +16,8 @@ int maxChainLength(Graph graph, int iVertex)
 /***********************************************************/
 /*maxchain is always called before this function
 use return of maxchain as iLongLength*/
+
+/*function needs a lot of work just some rudimentary basics jotted down may even be wrong so far*/
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength)
 {
   EdgeNode *e;
