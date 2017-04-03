@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
          , graph->vertexM[iVertexCnt].szCourseName);
       if(iScanfCnt < 2)
         printf("Course input invalid\n");
-      graph->vertexM[iVertexCnt]->prereqList.iPrereqVertex = FALSE;
+      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = FALSE;
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
     }
     
