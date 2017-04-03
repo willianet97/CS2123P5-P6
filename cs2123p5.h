@@ -42,6 +42,9 @@ Notes:
 #define FALSE 0
 #define TRUE 1
 
+//Null
+#define NULL -1
+
 // EdgeNode represents one edge in a graph
 typedef struct EdgeNode
 {
@@ -104,6 +107,8 @@ void printAllInList(Graph graph);
 void printOne(Graph graph, int iVertex);
 void printSources(Graph graph);
 void printSinks(Graph graph);
+void insertCourse(Graph graph, int iVertex)
+EdgeNode * allocateEdgeNode();
 
 Graph newGraph();
 
