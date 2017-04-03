@@ -18,6 +18,10 @@ Graph newGraph()
    // allocate memory for graph
    Graph g = malloc(sizeof(GraphImp));
    
+   // check if memory is available
+   if(g == NULL)
+     ErrExit(ERR_ALGORITHM, "No available memory for graph");
+  
    // mark the graph as empty
    g->iNumVertices = 0;
   
