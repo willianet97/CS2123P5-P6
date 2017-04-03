@@ -5,7 +5,7 @@ void printAllInList(Graph graph)
   int i;
   int iVertex = 0;
   /*header*/
-  printf("%s %s %s %s %s %s"
+  printf("%s %s %s %s %s %s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -36,7 +36,7 @@ void printAllInList(Graph graph)
      for (p = graph->vertexM[i].successorList; p != NULL; p = p->pNextEdge)
      {
        iVertex = graph->vertexM[i].prereqList.iSuccVertex;
-       printf("%s"
+       printf("%s\n"
               ,graph->vertexM[iVertex].szCourseId);
   }
          
@@ -50,7 +50,7 @@ void printOne(Graph graph, int iVertex)
   int iCount = 0;
   int i = 0;
   /*header*/
-  printf("%s %s %s %s %s %s"
+  printf("%s %s %s %s %s %s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -79,7 +79,7 @@ void printOne(Graph graph, int iVertex)
   for (p = graph->vertexM[iVertex].successorList; p != NULL; p = p->pNextEdge)
   {
     i = graph->vertexM[iVertex].prereqList.iSuccVertex;
-    printf("%s"
+    printf("%s\n"
            ,graph->vertexM[i].szCourseId);
   }
 }
@@ -88,14 +88,14 @@ void printSources(Graph graph)
 {
   int i;
   /*header*/
-  printf("%s %s"
+  printf("%s %s\n"
          ,"Course"
          ,"Name");
   for (i = 0; i < graph->iNumVertices; i++)
   {
     if (graph->vertexM[i].prereqList.iPrereqVertex == FALSE)
     {
-      printf("%s %s"
+      printf("%s %s\n"
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
@@ -105,14 +105,14 @@ void printSinks(Graph graph)
 {
   int i;
   /*header*/
-  printf("%s %s"
+  printf("%s %s\n"
          ,"Course"
          ,"Name");
   for (i = 0; i < graph->iNumVertices; i++)
   {
     if (graph->vertexM[i].succesorList.iSuccVertex == FALSE)
     {
-      printf("%s %s"
+      printf("%s %s\n"
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
