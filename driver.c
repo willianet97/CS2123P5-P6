@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
         printf("Print long input invalid");
       //calls print longs
       int pathM[MAX_VERTICES];
-      printLongChains(graph, findCourse(graph, szPrintname), int pathM[]
+      printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)));
     }
     
