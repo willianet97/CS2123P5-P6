@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
   char szPrereq[50];
   char szDummy[50];//this takes course and will exist for each sscanf
   char szPrintname[50];
+  int bCycle;
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
   
@@ -65,8 +66,11 @@ int main(int argc, char *argv[])
         graph->iNumVertices++
       }
       //takes prereq and course subscripts and inserts them
-      causesCycle(graph, iPV, findCourse(graph, szName));
-      insertPrereq(graph, iPV, findCourse(graph, szName));
+      bCycle = causesCycle(graph, iPV, findCourse(graph, szName));
+      if (bCycle == 0)
+        printf("Prereq insertion causes cycle\n");
+      else
+        insertPrereq(graph, iPV, findCourse(graph, szName));
     }
     
     if(strcmp(szCommand, "PRTONE") == 0)
