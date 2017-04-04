@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
         printf("Course input invalid\n");
       //for some reason the compiler doesn't like this being set to false
       //even though it is defined in the h
-      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = 0;
+      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = 0;   // Why not alocate node of prereqList inside insertCourse?
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
-      insertCourse(graph, iVertex);
+      insertCourse(graph, iVertex);                               // Where do you declare iVertex shouldnt it be iVertexCnt?
       iVertexCnt++;
       graph->iNumVertices++;
     }
@@ -188,6 +188,8 @@ void insertCourse(Graph graph, int iVertex)
   graph->vertexM[i].prereqList = e;
   EdgeNode *p = allocateEdgeNode();
   graph->vertexM[i].successorList = p;
+  //EdgeNode *k = allocateEdgeNode();
+  //graph->vertexM[i].prereqList = k;
 }
 /***************************************/
 void ErrExit(int iexitRC, char szFmt[], ... )
