@@ -34,7 +34,7 @@ void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLon
   for (e = graph->vertexM[iVertex].successorList; e!= NULL;
        e = e->pNextEdge)
   {
-    printLongChains(graph, graph->vertexM[iVertex].successorList.iSuccVertex, pathM[iLevel+1], iLongLength);
+    printLongChains(graph, graph->vertexM[iVertex].successorList->iSuccVertex, pathM, iLevel+1, iLongLength);
     // we want to be able to overwrite shorter paths 
     // without permanently increasing iLevel
     if(iLevel == iLongLength)
