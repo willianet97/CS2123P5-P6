@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         printf("Course input invalid\n");
       //for some reason the compiler doesn't like this being set to false
       //even though it is defined in the h
-      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = 0;   // Why not alocate node of prereqList inside insertCourse?
+      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = 0;   // Why not alocate node of prereqList inside insertCourse? we want this value to be -1 not 0, 0 is start of array
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
       insertCourse(graph, iVertex);                               // Where do you declare iVertex shouldnt it be iVertexCnt?
       iVertexCnt++;
