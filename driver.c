@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
   char szPrintname[50];
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
-
+  
   while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
     //the first argument here doesn't work so i dont know 
@@ -65,6 +65,7 @@ int main(int argc, char *argv[])
         graph->iNumVertices++
       }
       //takes prereq and course subscripts and inserts them
+      causesCycle(graph, iPV, findCourse(graph, szName));
       insertPrereq(graph, iPV, findCourse(graph, szName));
     }
     
@@ -218,3 +219,47 @@ void ErrExit(int iexitRC, char szFmt[], ... )
                                 // the pre-compiler
     exit(iexitRC);
 }
+void exitUsage(int iArg, char *pszMessage, char *pszDiagnosticInfo)
+{
+     switch (iArg)
+     {
+       case USAGE_ERR:
+          fprintf(stderr, "Error: %s %s\n"
+          , pszMessage
+          , pszDiagnosticInfo);
+         break;
+       case USAGE_ONLY:
+         break;
+       default:
+         fprintf(stderr, "Error: bad argument #%d.  %s %s\n"
+                  , iArg
+                  , pszMessage
+                  , pszDiagnosticInfo);
+     }
+           // print the usage information for any type of command line error
+  fprintf(stderr, "p2 -c courseFileName -q queryFileName\n");
+  if (iArg == USAGE_ONLY)
+    exit(USAGE_ONLY);
+  else
+    exit(ERR_COMMAND_LINE);
+}
+
+
+void processCommandSwitches(int argc, char *argv[], Simulation simulation)
+{
+  int i;
+  for (i = 1; i < argc; i++)
+  {
+     if (argv[i][0] != '-')
+         exitUsage(i, ERR_EXPECTED_SWITCH, argv[i]);
+     switch (argv[i][1])
+     {
+      case '?':
+        exitUsage(USAGE_ONLY, "", "");
+        break;
+      default:
+        exitUsage(i, ERR_EXPECTED_SWITCH, argv[i]);
+             }
+      }
+ }
+
