@@ -28,10 +28,16 @@ use return of maxchain as iLongLength*/
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength)
 {
   EdgeNode *e;
+  pathM[iLevel] = iVertex;// this reads current vertex into pathM
   for (e = graph->vertexM[iVertex].successorList; e!= NULL;
        e = e->pNextEdge)
   {
-    iLevel++;
-    printLongChains(graph, iVertex, pathM[iLevel], iLongLength);
+    printLongChains(graph, graph->vertexM[iVertex].successorList.iSuccVertex, pathM[iLevel+1], iLongLength);
+    // we want to be able to overwrite shorter paths 
+    // without permanently increasing iLevel
+    if(iLevel == iLongLength)
+    {
+      printf("\tLongest chains beginning with %s\n", graph->vertexM[pathM[0]].szCourseId); // this will always be 0
+    }
   }
 }
