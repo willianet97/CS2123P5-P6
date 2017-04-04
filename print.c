@@ -1,6 +1,6 @@
 void printAllInList(Graph graph)
 {
-  EdgeNode *p;      //pointer variable used for traversing adjacency list
+  EdgeNode *e;      //pointer variable used for traversing adjacency list
   int iCount = 0;   //local variable used for printing ...
   int i;            //local variable used for traversing vertices
   int iVertex = 0;  //local variable used to hold vertex number
@@ -23,10 +23,10 @@ void printAllInList(Graph graph)
          ,graph->vertexM[i].szCourseName);
     //for loop used to traverse the prereqs of the specified vertex
     //may need tweaking or reworking
-     for (p = graph->vertexM[i].prereqList; p != NULL; p = p->pNextEdge)
+     for (e = graph->vertexM[i].prereqList; p != NULL; e = e->pNextEdge)
      {
        //iVertex used to hold the vertex number of the prereq
-       iVertex = graph->vertexM[i].prereqList->iPrereqVertex;
+       iVertex = e->iPrereqVertex;
        //prints the prereq
        printf("%s"
               ,graph->vertexM[iVertex].szCourseId);
@@ -44,9 +44,9 @@ void printAllInList(Graph graph)
      }
     //for loop to traverse successors
     //may need tweaking or reworking
-     for (p = graph->vertexM[i].successorList; p != NULL; p = p->pNextEdge)
+     for (e = graph->vertexM[i].successorList; p != NULL; e = e->pNextEdge)
      {
-       iVertex = graph->vertexM[i].prereqList->iSuccVertex;
+       iVertex = e->iSuccVertex;
        printf("%s\n"
               ,graph->vertexM[iVertex].szCourseId);
      }
@@ -57,7 +57,7 @@ void printAllInList(Graph graph)
 iVertex = findCourse(graph, szCourseId - what was grabbed from sscanf)*********/
 void printOne(Graph graph, int iVertex)
 {
-  EdgeNode *p;  //local pointer variable used to traverse adjacency list
+  EdgeNode *e;  //local pointer variable used to traverse adjacency list
   int iCount = 0; //local variable used for printing ...
   int i = 0;  //local variable used to hold vertex number
   /*header*/
@@ -76,10 +76,10 @@ void printOne(Graph graph, int iVertex)
          ,graph->vertexM[iVertex].szCourseName);
   //used to traverse prereqs
   //may need tweaking or reworking
-  for (p = graph->vertexM[iVertex].prereqList; p != NULL; p = p->pNextEdge)
+  for (e = graph->vertexM[iVertex].prereqList; e != NULL; e = e->pNextEdge)
   {
     //stores the vertex of the prereq to be printed
-    i = graph->vertexM[iVertex].prereqList->iPrereqVertex;
+    i = e->iPrereqVertex;
     printf("%s"
            ,graph->vertexM[i].szCourseId);
     //increment iCount for each prereq
@@ -95,10 +95,10 @@ void printOne(Graph graph, int iVertex)
   }
   //used to traverse succesor list
   //may need tweaks or rework
-  for (p = graph->vertexM[iVertex].successorList; p != NULL; p = p->pNextEdge)
+  for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   {
     //stores vertex of successsor
-    i = graph->vertexM[iVertex].prereqList->iSuccVertex;
+    i = e->iSuccVertex;
     printf("%s\n"
            ,graph->vertexM[i].szCourseId);
   }
@@ -150,10 +150,10 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
 {
   int i;  //local varible used for indentations
   int iVertexSucc = 0;  //local variable used to hold successor vertex number
-  EdgeNode *p;  //local pointer variable used to traverse adjacency list
+  EdgeNode *e;  //local pointer variable used to traverse adjacency list
   //for loop used to traverse successor list of specified vertex
-  for (p = graph->vertexM[iVertex].successorList; p != NULL;
-    p = p->pNextEdge)
+  for (e = graph->vertexM[iVertex].successorList; e != NULL;
+    e = e->pNextEdge)
   {
     //prints appropriate number of indentations
     for (i = 0; i < iIndent; i++)
@@ -161,13 +161,13 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
       printf("  ");
     }
     //assigns iVertexSucc to the successor vertex of the specified original vertex and prints
-    iVertexSucc = graph->vertexM[iVertex].successorList->iSuccVertex;
+    iVertexSucc = e->iSuccVertex;
     printf("%s %s"
            ,graph->vertexM[iVertexSucc].szCourseId
            ,graph->vertexM[iVertexSucc].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
     //p->iSuccVertex may not be right
-    printTraversal(graph, p->iSuccVertex,iIndent+1);
+    printTraversal(graph, e->iSuccVertex,iIndent+1);
   }
 }
 
