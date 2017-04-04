@@ -1,11 +1,13 @@
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-  //local variable iPV to hold findCourse info
-  int iPV = findCourse(graph, graph->vertexM[iPrereqVertex].szCourseId);
-  if (iPV < 0) //findcourse returns -1 if course not found
-  {
-    /*insert prereq into graph and set name as TBD*/
-  }
+  //set the course prereqlist vertex to the passed in prereq vertex
+  graph->vertexM[iCourseVertex].prereqList->iPrereqVertex = iPrereqVertex;
+  graph->vertexM[iCourseVertex].prereqList->iSuccVertex = iCourseVertex;
+  //set the prereq successorlist vertex to the passed in course vertex
+  graph->vertexM[iPrereqVertex].successorList->iSuccVertex = iCourseVertex;
+  graph->vertexM[iPrereqVertex].successorList->iPrereqVertex = iPrereqVertex;
+  /*need some way to increment list possibly because if we added another prereq to that
+  course would it override the previous prereq we put in does pNextEdge need to be used?*/
   
 }
 /************************** newGraph ********************************
