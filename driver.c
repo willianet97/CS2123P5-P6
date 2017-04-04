@@ -37,10 +37,13 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 3)
         printf("Course input invalid\n");
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
-      insertCourse(graph, iVertexCnt); 
-      graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
-      iVertexCnt++;
-      graph->iNumVertices++;
+      if(findCourse(graph, iVertexCnt) < 0)// if the course already exists it doesn't create an entire new one
+      {
+        insertCourse(graph, iVertexCnt); 
+        graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
+        iVertexCnt++;
+        graph->iNumVertices++;
+      }
     }
     
     //prereq should already exist otherwise this will cause an error
@@ -54,7 +57,7 @@ int main(int argc, char *argv[])
         //local variable iPV to hold findCourse info
       int iPV = findCourse(graph, szPrereq);
       // if PreReqCourse is not in the vertex, then insert it with TBD szCourseName and its id
-      if (iPV == NULL) //findcourse returns NULL if course not found
+      if (iPV < 0) //findcourse returns -1 if course not found because NULL won't work unless we figure that out
       {
         // create Vertex for new PreReqCourse which wasnt in the Graph before
         strcpy(szPrereq ,graph->vertexM[iVertexCnt].szCourseId);
@@ -157,7 +160,7 @@ int findCourse(Graph graph, char szCourseId[])
   }
   /*we want this to be NULL not 0 if 0 that means it would be the vertexM[0] we want to use a 
   conditional for if (!= NULL) or if (== NULL)*/
-  return NULL;
+  return -1;
 }
 /*************************************************/
 char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
