@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
         iVertexCnt++;
         graph->iNumVertices++;
       }
+      //we'll add in the exception that the prereq inserted a course to overwrite the tbd later
     }
     
     //prereq should already exist otherwise this will cause an error
@@ -250,23 +251,4 @@ void exitUsage(int iArg, char *pszMessage, char *pszDiagnosticInfo)
   else
     exit(ERR_COMMAND_LINE);
 }
-
-
-void processCommandSwitches(int argc, char *argv[], Simulation simulation)
-{
-  int i;
-  for (i = 1; i < argc; i++)
-  {
-     if (argv[i][0] != '-')
-         exitUsage(i, ERR_EXPECTED_SWITCH, argv[i]);
-     switch (argv[i][1])
-     {
-      case '?':
-        exitUsage(USAGE_ONLY, "", "");
-        break;
-      default:
-        exitUsage(i, ERR_EXPECTED_SWITCH, argv[i]);
-             }
-      }
- }
-
+// we don't need command switches in this program. We just give it input only
