@@ -1,3 +1,17 @@
+
+int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
+{
+EdgeNode *e; // EdgeNode for trversal
+int iPV;     // variable that will hold SuccVertex
+  for (e = graph->vertexM[iVertex].successorList; p != NULL; e = e->pNextEdge)
+      {
+       iSV = e->iSuccVertex
+       if (iPrereqVertex == iPrereqVertex) // successors of iVertex reaches iPrereqVertex, causes cycle.
+         return 0; // Returns TRUE if the insertion of an edge containing the course and its prereq would cause a cycle 
+     }
+  return -1;
+  }   
+
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
   //set the course prereqlist vertex to the passed in prereq vertex
