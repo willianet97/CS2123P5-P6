@@ -1,7 +1,7 @@
 int maxChain(Graph graph, int iVertex)
 {
   //still working on the basics of this one
-  EdgeNode *e;// does this have to be malloced too? i'm suddenly forgetting the nitty gritty details
+  EdgeNode *e;// does this have to be malloced too? i'm suddenly forgetting the nitty gritty details.... no its a local pointer variable
   int iCount = 0;
   int iFirst =0;
   // traverse to the adjacent vertices
