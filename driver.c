@@ -5,6 +5,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "cs2123p5.h"
+
 int main(int argc, char *argv[])
 {
   int iScanfCnt = 0;
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
   char szPrintname[50];
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
+
   while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
     //the first argument here doesn't work so i dont know 
@@ -48,8 +50,22 @@ int main(int argc, char *argv[])
          , szPrereq);
       if(iScanfCnt < 2)
         printf("Prereq input invalid\n");
+        //local variable iPV to hold findCourse info
+      int iPV = findCourse(graph, szPrereq);
+      // if PreReqCourse is not in the vertex, then insert it with TBD szCourseName and its id
+      if (iPV == NULL) //findcourse returns NULL if course not found
+      {
+        // create Vertex for new PreReqCourse which wasnt in the Graph before
+        strcpy(szPrereq ,graph->vertexM[iVertexCnt].szCourseId);
+        strcpy("TBD" ,graph->vertexM[iVertexCnt].szCourseName);
+        // allocate edgeNodes for new course
+        insertCourse(graph, iVertexCnt);
+        graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
+        iVertexCnt++;
+        graph->iNumVertices++
+      }
       //takes prereq and course subscripts and inserts them
-      insertPrereq(graph, findCourse(graph, szPrereq), findCourse(graph, szName));
+      insertPrereq(graph, iPV, findCourse(graph, szName));
     }
     
     if(strcmp(szCommand, "PRTONE") == 0)
