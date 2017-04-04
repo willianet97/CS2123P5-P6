@@ -2,7 +2,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
   //local variable iPV to hold findCourse info
   int iPV = findCourse(graph, graph->vertexM[iPrereqVertex].szCourseId);
-  if (i < 0) //findcourse returns -1 if course not found
+  if (iPV < 0) //findcourse returns -1 if course not found
   {
     /*insert prereq into graph and set name as TBD*/
   }
