@@ -125,8 +125,9 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Print long input invalid");
       //calls print longs
+      int pathM[MAX_VERTICES];
       printLongChains(graph, findCourse(graph, szPrintname), int pathM[]
-                      , int iLevel, maxChain(graph, findCourse(graph, szPrintname)));
+                      , 0, maxChain(graph, findCourse(graph, szPrintname)));
     }
     
     //just calls print function, no scanf required
