@@ -23,6 +23,7 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
   {
      iSV = e->iSuccVertex;
      if (iPrereqVertex == iSV) // check if successors of iVertex reach iPrereqVertex
+                               // is this the only case that we have to check to see if ther eis a cycle?
        return TRUE;
   }
   
