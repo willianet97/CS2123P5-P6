@@ -32,7 +32,7 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-    // I think we already allocated node to the prereqList and successorList in the driver, but we can change it, this looks more understandable.
+    // I dont understand this, I think we already allocated node to the prereqList and successorList in the driver.
     EdgeNode *eNew = allocateEdgeNode();
     eNew->iPrereqVertex = iPrereqVertex;
     eNew->iSuccVertex = iCourseVertex;
