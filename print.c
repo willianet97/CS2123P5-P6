@@ -31,7 +31,7 @@ void printAllInList(Graph graph)
          ,graph->vertexM[i].szCourseName);
     //for loop used to traverse the prereqs of the specified vertex
     //may need tweaking or reworking
-     for (e = graph->vertexM[i].prereqList; p != NULL; e = e->pNextEdge)
+     for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
      {
        //iVertex used to hold the vertex number of the prereq
        iVertex = e->iPrereqVertex;
@@ -52,7 +52,7 @@ void printAllInList(Graph graph)
      }
     //for loop to traverse successors
     //may need tweaking or reworking
-     for (e = graph->vertexM[i].successorList; p != NULL; e = e->pNextEdge)
+     for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
      {
        iVertex = e->iSuccVertex;
        printf("%s"
@@ -92,7 +92,7 @@ void printOne(Graph graph, int iVertex)
     printf("%s\t"
            ,graph->vertexM[i].szCourseId);
     //increment iCount for each prereq
-    iCount++
+    iCount++;
   }
   //if iCount < 4 print appropriate number of ...
   if (iCount < 4)
