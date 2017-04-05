@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 3)
         printf("Course input invalid\n");
       strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
-      if(findCourse(graph, iVertexCnt) < 0)// if the course already exists it doesn't create an entire new one
+      if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
         insertCourse(graph, iVertexCnt); 
         graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
         insertCourse(graph, iVertexCnt);
         graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
         iVertexCnt++;
-        graph->iNumVertices++
+        graph->iNumVertices++;
       }
       //takes prereq and course subscripts and inserts them
       bCycle = causesCycle(graph, iPV, findCourse(graph, szName));
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
       else
         insertPrereq(graph, iPV, findCourse(graph, szName));
     }
-    printf("%s %s %s"
+    printf("%s %s"
          , szDummy
          , szPrereq);
     
@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
         printf("Printone input invalid\n");
       //calls printone function
       printOne(graph, findCourse(graph, szPrintname));
-      printf("%s %s %s"
+      printf("%s %s"
          , szDummy
          , szPrintname);
     }
@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
       //calls print successor
       //pretty sure this is for successor
       printTraversal(graph, findCourse(graph, szPrintname), 1);
-      printf("%s %s %s"
+      printf("%s %s"
          , szDummy
          , szPrintname);
     }
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
         printf("Max Chain input invalid\n");
       //calls max chain
       maxChain(graph, findCourse(graph, szPrintname));
-      printf("%s %s %s"
+      printf("%s %s"
          , szDummy
          , szPrintname);
     }
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
       int pathM[MAX_VERTICES];
       printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)));
-      printf("%s %s %s"
+      printf("%s %s"
          , szDummy
          , szPrintname);
     }
