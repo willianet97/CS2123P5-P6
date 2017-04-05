@@ -1,3 +1,11 @@
+#define CRT SECURE NO WARNINGS 1
+//include files
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include "cs2123p5.h"
+
 void printAllInList(Graph graph)
 {
   EdgeNode *e;      //pointer variable used for traversing adjacency list
