@@ -31,6 +31,29 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
+    EdgeNode *eNew = allocateEdgeNode();
+    eNew->iPrereqVertex = iPrereqVertex;
+    eNew->iSuccVertex = iCourseVertex;
+    if (graph->vertexM[iCourseVertex].prereqList->iPrereqVertex == -1)
+    {
+        graph->vertexM[iCourseVertex].prereqList->iPrereqVertex = eNew;
+        eNew->pNextEdge = NULL;
+    }
+    else
+    {
+        graph->vertexM[iCourseVertex].prereqList->pNextEdge = eNew;
+        eNew->pNextEdge = NULL
+    }
+    if (graph->vertexM[iPrereqVertex].successorList->iSuccVertex == -1)
+    {
+        graph->vertexM[iPrereqVertex].successorList->iSuccVertex = eNew;
+        eNew->pNextEdge = NULL;
+    }
+    else
+    {
+        graph->vertexM[iPrereqVertex].successorList->pNextEdge = eNew;
+        eNew->pNextEdge = NULL;
+    }
   //set the course prereqlist vertex to the passed in prereq vertex
   graph->vertexM[iCourseVertex].prereqList->iPrereqVertex = iPrereqVertex;
   graph->vertexM[iCourseVertex].prereqList->iSuccVertex = iCourseVertex;
