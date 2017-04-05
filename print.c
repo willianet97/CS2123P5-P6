@@ -5,7 +5,7 @@ void printAllInList(Graph graph)
   int i;            //local variable used for traversing vertices
   int iVertex = 0;  //local variable used to hold vertex number
   /*header*/
-  printf("%s %s %s %s %s %s\n"
+  printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -16,7 +16,7 @@ void printAllInList(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //prints the vertex, te, course id, course name
-    printf("%d %d %s %s"
+    printf("%2d %2d %-6s %-20s"
          ,i
          ,0 //te
          ,graph->vertexM[i].szCourseId
@@ -28,7 +28,7 @@ void printAllInList(Graph graph)
        //iVertex used to hold the vertex number of the prereq
        iVertex = e->iPrereqVertex;
        //prints the prereq
-       printf("%s"
+       printf("%s\t"
               ,graph->vertexM[iVertex].szCourseId);
        //iterate iCount to see if ... is needed to be printed
        iCount++;
@@ -39,7 +39,7 @@ void printAllInList(Graph graph)
      {
         for (i = iCount; i <= 4; i++)
         {
-          printf("...");
+          printf("...\t");
         }
      }
     //for loop to traverse successors
@@ -47,9 +47,10 @@ void printAllInList(Graph graph)
      for (e = graph->vertexM[i].successorList; p != NULL; e = e->pNextEdge)
      {
        iVertex = e->iSuccVertex;
-       printf("%s\n"
+       printf("%s"
               ,graph->vertexM[iVertex].szCourseId);
      }
+    printf("\n");
   }      
 }
 /*********************************/
@@ -61,7 +62,7 @@ void printOne(Graph graph, int iVertex)
   int iCount = 0; //local variable used for printing ...
   int i = 0;  //local variable used to hold vertex number
   /*header*/
-  printf("%s %s %s %s %s %s\n"
+  printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -69,7 +70,7 @@ void printOne(Graph graph, int iVertex)
          ,"Prereqs"
          ,"Successors");
   //prints the vertex, te, courseId, courseName
-  printf("%d %d %s %s"
+  printf("%2d %2d %-6s %-20s"
          ,iVertex
          ,0 //te
          ,graph->vertexM[iVertex].szCourseId
@@ -80,7 +81,7 @@ void printOne(Graph graph, int iVertex)
   {
     //stores the vertex of the prereq to be printed
     i = e->iPrereqVertex;
-    printf("%s"
+    printf("%s\t"
            ,graph->vertexM[i].szCourseId);
     //increment iCount for each prereq
     iCount++
@@ -90,7 +91,7 @@ void printOne(Graph graph, int iVertex)
   {
     for (i = iCount; i <= 4; i++)
     {
-      printf("...");
+      printf("...\t");
     }
   }
   //used to traverse succesor list
@@ -99,16 +100,17 @@ void printOne(Graph graph, int iVertex)
   {
     //stores vertex of successsor
     i = e->iSuccVertex;
-    printf("%s\n"
+    printf("%s\t"
            ,graph->vertexM[i].szCourseId);
   }
+  printf("\n");
 }
 /*********************************/
 void printSources(Graph graph)
 {
   int i;  //local variable used to traverse all vertices
   /*header*/
-  printf("%s %s\n"
+  printf("%-6s %-20s\n"
          ,"Course"
          ,"Name");
   //for loop to traverse all vertices
@@ -117,7 +119,7 @@ void printSources(Graph graph)
     //conditional if the vertex has no prereq print that vertex
     if (graph->vertexM[i].prereqList->iPrereqVertex == -1)
     {
-      printf("%s %s\n"
+      printf("%-6s %-20s\n"
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
@@ -128,7 +130,7 @@ void printSinks(Graph graph)
 {
   int i;  //local variable used to traverse all vertices
   /*header*/
-  printf("%s %s\n"
+  printf("%-6s %-20s\n"
          ,"Course"
          ,"Name");
   //for loop to traverse all vertices
@@ -137,7 +139,7 @@ void printSinks(Graph graph)
     //if the vertex has no successor print that vertex
     if (graph->vertexM[i].successorList->iSuccVertex == -1)
     {
-      printf("%s %s\n"
+      printf("%-6s %-20s\n"
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
@@ -162,7 +164,7 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
     }
     //assigns iVertexSucc to the successor vertex of the specified original vertex and prints
     iVertexSucc = e->iSuccVertex;
-    printf("%s %s"
+    printf("%-6s %-20s"
            ,graph->vertexM[iVertexSucc].szCourseId
            ,graph->vertexM[iVertexSucc].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
