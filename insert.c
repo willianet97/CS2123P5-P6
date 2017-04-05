@@ -109,7 +109,7 @@ Returns:
 Notes:
     n/a
 **************************************************************************/
-EdgeNode *allocateEdgeNode()
+EdgeNode * allocateEdgeNode()
 {
   // allocate memory for an edge node
   EdgeNode *pNew;
