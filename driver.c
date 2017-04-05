@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
          , graph->vertexM[iVertexCnt].szCourseName);
       if(iScanfCnt < 3)
         printf("Course input invalid\n");
-      strcpy(graph->vertexM[iVertexCnt].szCourseId, szName);
+      strcpy(szName, graph->vertexM[iVertexCnt].szCourseId);
       if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
         insertCourse(graph, iVertexCnt); 
@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
       if (iPV < 0) //findcourse returns -1 if course not found because NULL won't work unless we figure that out
       {
         // create Vertex for new PreReqCourse which wasnt in the Graph before
-        strcpy(szPrereq ,graph->vertexM[iVertexCnt].szCourseId);
-        strcpy("TBD" ,graph->vertexM[iVertexCnt].szCourseName);
+        strcpy(graph->vertexM[iVertexCnt].szCourseId, szPrereq);
+        strcpy(graph->vertexM[iVertexCnt].szCourseName, "TBD" );
         // allocate edgeNodes for new course
         insertCourse(graph, iVertexCnt);
         graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
