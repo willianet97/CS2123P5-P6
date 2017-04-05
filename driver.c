@@ -228,9 +228,9 @@ char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
 void insertCourse(Graph graph, int iVertex)
 {
   EdgeNode *e = allocateEdgeNode();
-  graph->vertexM[i].prereqList = e;
+  graph->vertexM[iVertex].prereqList = e;
   EdgeNode *p = allocateEdgeNode();
-  graph->vertexM[i].successorList = p;
+  graph->vertexM[iVertex].successorList = p;
 }
 /***************************************/
 void ErrExit(int iexitRC, char szFmt[], ... )
