@@ -17,17 +17,20 @@ Notes:
 ***************************************************************************/
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 {
+  if(iVertex <= 0)
+     return;
   EdgeNode *e; // EdgeNode for traversal
-  int iSV;     // variable that will hold SuccVertex
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   {
-     if (iPrereqVertex == e->iSuccVertex) // check if successors of iVertex reach iPrereqVertex
-                                          // is this the only case that we have to check to see if ther eis a cycle?
-       return TRUE;
+      causesCycle(Graph graph, graph->vertexM[iVertex].successorList->iSuccVertex, int iVertex);
+
+     if (graph->vertexM[iVertex].successorList->iSuccVertex == iPrereqVertex) // check if successors of iVertex reach iPrereqVertex
+         return TRUE;                                                         // is this is the only case that causes cycle?
   }
   
   return FALSE;
 }   
+
 /***************************** insertPrereq ********************************
 int insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 Purpose:
