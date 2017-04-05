@@ -28,17 +28,25 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
   
   return FALSE;
 }   
+/***************************** insertPrereq ********************************
+int insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
+Purpose:
+    Inserts the Edgenodwith the PreReqVertex and iSuccVertex to the lists of Nodes of each course. 
+Parameters:
+    I Graph graph         the graph containing info on the vertices
+    I int iPrereqVertex   the index of the prereq vertex
+    I int iCourseVertex   the index of the course
+Notes:
+    This is used by the PREREQ command.
+***************************************************************************/
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-    // sorry didnt read the comments, now I get it, I will check the code later.
-    //dont we want to allocate a new node to add to the list? otherwise im afraid with the other way we will simply just
-    //be overriding the first prereq or succ vertex of the list and not adding another to the list
-    //i could be wrong
     EdgeNode *eNew = allocateEdgeNode();
     eNew->iPrereqVertex = iPrereqVertex;
     eNew->iSuccVertex = iCourseVertex;
-    if (graph->vertexM[iCourseVertex].prereqList->iPrereqVertex == -1)
+    //set the courseVertex prereqlist vertex to the ones passed
+    if (graph->vertexM[iCourseVertex].prereqList->iPrereqVertex == -1)// check if prereqList list already had Edges
     {
         graph->vertexM[iCourseVertex].prereqList = eNew;
         eNew->pNextEdge = NULL;
@@ -48,7 +56,8 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
         graph->vertexM[iCourseVertex].prereqList->pNextEdge = eNew;
         eNew->pNextEdge = NULL
     }
-    if (graph->vertexM[iPrereqVertex].successorList->iSuccVertex == -1)
+    //set the prereqVertex successorlist vertex to the ones passed
+    if (graph->vertexM[iPrereqVertex].successorList->iSuccVertex == -1) // check if successor list already had Edges
     {
         graph->vertexM[iPrereqVertex].successorList = eNew;
         eNew->pNextEdge = NULL;
@@ -58,15 +67,6 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
         graph->vertexM[iPrereqVertex].successorList->pNextEdge = eNew;
         eNew->pNextEdge = NULL;
     }
-  //set the course prereqlist vertex to the passed in prereq vertex
-  graph->vertexM[iCourseVertex].prereqList->iPrereqVertex = iPrereqVertex;
-  graph->vertexM[iCourseVertex].prereqList->iSuccVertex = iCourseVertex;
-  //set the prereq successorlist vertex to the passed in course vertex
-  graph->vertexM[iPrereqVertex].successorList->iSuccVertex = iCourseVertex;
-  graph->vertexM[iPrereqVertex].successorList->iPrereqVertex = iPrereqVertex;
-  /*need some way to increment list possibly because if we added another prereq to that
-  course would it override the previous prereq we put in does pNextEdge need to be used?*/
-  
 }
 /************************** newGraph ********************************
 Graph newGraph()
