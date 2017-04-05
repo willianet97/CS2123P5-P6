@@ -102,7 +102,8 @@ Graph newGraph()
    // mark the graph as empty
    g->iNumVertices = 0;
   
-   // g->vertexM will be set in driver
+   // initialize the values of the vertex array to -1
+   memset(g->vertexM, -1, MAX_VERTICES);
   
    return g;
 }
