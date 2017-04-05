@@ -25,15 +25,13 @@ Notes:
 ***************************************************************************/
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 {
-  if(iVertex < 0)
-     return -2; // make a global variable where vertex doesn't exist int NO_VERTEX = -2;
+  if(iVertex == iPrereqVertex)
+     return TRUE; 
   EdgeNode *e; // EdgeNode for traversal
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
-  {
-      // i don't think we need this : causesCycle(graph, iPrereqVertex, graph->vertexM[iVertex].successorList->iSuccVertex);
-
-     if (graph->vertexM[iVertex].successorList->iSuccVertex == iPrereqVertex) // check if successors of iVertex reach iPrereqVertex
-         return TRUE;                                                         // is this is the only case that causes cycle?
+  { 
+      if(causesCycle(graph, iPrereqVertex,  e -> iSuccVertex))
+         return TRUE;
   }
   
   return FALSE;
