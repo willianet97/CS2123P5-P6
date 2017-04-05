@@ -93,7 +93,7 @@ Notes:
 Graph newGraph()
 {
    // allocate memory for graph
-   Graph g = malloc(sizeof(GraphImp));
+   Graph g = (Graph)malloc(sizeof(GraphImp));
    
    // check if memory is available
    if(g == NULL)
