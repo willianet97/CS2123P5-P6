@@ -1,16 +1,33 @@
-
+/***************************** causesCycle ********************************
+int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
+Purpose:
+    Checks to see if an insertion causes a cycle and returns a boolean
+    accordingly.
+Parameters:
+    I Graph graph         the graph containing info on the vertices
+    I int iPrereqVertex   the index of the prereq vertex
+    I int iVertex         the index of the current vertex
+Returns:
+    Returns TRUE if the insertion of an edge containing the course and its
+    prereq would cause a cycle.
+    Otherwise, returns FALSE.
+Notes:
+    This is used by the PREREQ command to check if whether the insertion of
+    a prereq would cause a cycle prior to actually inserting that prereq.
+***************************************************************************/
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 {
-EdgeNode *e; // EdgeNode for trversal
-int iPV;     // variable that will hold SuccVertex
+  EdgeNode *e; // EdgeNode for traversal
+  int iPV;     // variable that will hold SuccVertex
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
-      {
-       iSV = e->iSuccVertex
-       if (iPrereqVertex == iSV) // successors of iVertex reaches iPrereqVertex, causes cycle.
-         return 0; // Returns TRUE if the insertion of an edge containing the course and its prereq would cause a cycle 
-     }
-  return -1;
-  }   
+  {
+     iSV = e->iSuccVertex;
+     if (iPrereqVertex == iSV) // check if successors of iVertex reach iPrereqVertex
+       return TRUE;
+  }
+  
+  return FALSE;
+}   
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
