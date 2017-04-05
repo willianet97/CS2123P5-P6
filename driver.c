@@ -44,6 +44,10 @@ int main(int argc, char *argv[])
         iVertexCnt++;
         graph->iNumVertices++;
       }
+      printf("%s %s %s"
+         , szDummy
+         , graph->vertexM[iVertexCnt].szCourseId
+         , graph->vertexM[iVertexCnt].szCourseName);
       //we'll add in the exception that the prereq inserted a course to overwrite the tbd later
     }
     
@@ -76,6 +80,9 @@ int main(int argc, char *argv[])
       else
         insertPrereq(graph, iPV, findCourse(graph, szName));
     }
+    printf("%s %s %s"
+         , szDummy
+         , szPrereq);
     
     if(strcmp(szCommand, "PRTONE") == 0)
     {
@@ -85,7 +92,10 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Printone input invalid\n");
       //calls printone function
-      printOne(graph, findCourse(graph, szPrintname));  
+      printOne(graph, findCourse(graph, szPrintname));
+      printf("%s %s %s"
+         , szDummy
+         , szPrintname);
     }
     
     //just calls print function, no scanf required
@@ -104,6 +114,9 @@ int main(int argc, char *argv[])
       //calls print successor
       //pretty sure this is for successor
       printTraversal(graph, findCourse(graph, szPrintname), 1);
+      printf("%s %s %s"
+         , szDummy
+         , szPrintname);
     }
     
     if(strcmp(szCommand, "MAXCHAIN") == 0)
@@ -115,6 +128,9 @@ int main(int argc, char *argv[])
         printf("Max Chain input invalid\n");
       //calls max chain
       maxChain(graph, findCourse(graph, szPrintname));
+      printf("%s %s %s"
+         , szDummy
+         , szPrintname);
     }
     
     if(strcmp(szCommand, "PRTLONGS") == 0)
@@ -128,6 +144,9 @@ int main(int argc, char *argv[])
       int pathM[MAX_VERTICES];
       printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)));
+      printf("%s %s %s"
+         , szDummy
+         , szPrintname);
     }
     
     //just calls print function, no scanf required
