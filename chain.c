@@ -40,6 +40,10 @@ void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLon
     if(iLevel == iLongLength)
     {
       printf("\tLongest chains beginning with %s\n", graph->vertexM[pathM[0]].szCourseId); // this will always be 0
+      for(int i = 0; i < iLevel; i++){
+        printf("%s", graph->vertexM[pathM[i]].szCourseId);
+      }
+      printf("%s\n", graph->vertexM[pathM[iLevel]].szCourseId);
     }
   }
 }
