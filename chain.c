@@ -37,6 +37,7 @@ void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLon
   if(iVertex <= 0)
     return;
   EdgeNode *e;
+  int i;
   pathM[iLevel] = iVertex;// this reads current vertex into pathM
   for (e = graph->vertexM[iVertex].successorList; e!= NULL;
        e = e->pNextEdge)
@@ -47,7 +48,7 @@ void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLon
     if(iLevel == iLongLength)
     {
       printf("\tLongest chains beginning with %s\n", graph->vertexM[pathM[0]].szCourseId); // this will always be 0
-      for(int i = 0; i < iLevel; i++){
+      for(i = 0; i < iLevel; i++){
         printf("%-6s", graph->vertexM[pathM[i]].szCourseId);
       }
       printf("%-6s\n", graph->vertexM[pathM[iLevel]].szCourseId);
