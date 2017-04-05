@@ -32,7 +32,7 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-    // I dont understand this, I think we already allocated node to the prereqList and successorList in the driver.
+    // sorry didnt read the comments, now I get it, I will check the code later.
     //dont we want to allocate a new node to add to the list? otherwise im afraid with the other way we will simply just
     //be overriding the first prereq or succ vertex of the list and not adding another to the list
     //i could be wrong
