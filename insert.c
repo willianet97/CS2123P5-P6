@@ -21,9 +21,8 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
   int iSV;     // variable that will hold SuccVertex
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   {
-     iSV = e->iSuccVertex; // we don't need to do this, we can just put e->iSuccVertex in the comparison
-     if (iPrereqVertex == iSV) // check if successors of iVertex reach iPrereqVertex
-                               // is this the only case that we have to check to see if ther eis a cycle?
+     if (iPrereqVertex == e->iSuccVertex) // check if successors of iVertex reach iPrereqVertex
+                                          // is this the only case that we have to check to see if ther eis a cycle?
        return TRUE;
   }
   
