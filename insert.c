@@ -30,7 +30,7 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
   EdgeNode *e; // EdgeNode for traversal
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   {
-      causesCycle(Graph graph, graph->vertexM[iVertex].successorList->iSuccVertex, int iVertex);
+      causesCycle(graph, graph->vertexM[iVertex].successorList->iSuccVertex, iVertex);
 
      if (graph->vertexM[iVertex].successorList->iSuccVertex == iPrereqVertex) // check if successors of iVertex reach iPrereqVertex
          return TRUE;                                                         // is this is the only case that causes cycle?
