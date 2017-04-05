@@ -25,8 +25,8 @@ Notes:
 ***************************************************************************/
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 {
-  if(iVertex <= 0)
-     return;
+  if(iVertex < 0)
+     return -2; // make a global variable where vertex doesn't exist int NO_VERTEX = -2;
   EdgeNode *e; // EdgeNode for traversal
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   {
