@@ -36,7 +36,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     eNew->iSuccVertex = iCourseVertex;
     if (graph->vertexM[iCourseVertex].prereqList->iPrereqVertex == -1)
     {
-        graph->vertexM[iCourseVertex].prereqList->iPrereqVertex = eNew;
+        graph->vertexM[iCourseVertex].prereqList = eNew;
         eNew->pNextEdge = NULL;
     }
     else
@@ -46,7 +46,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     }
     if (graph->vertexM[iPrereqVertex].successorList->iSuccVertex == -1)
     {
-        graph->vertexM[iPrereqVertex].successorList->iSuccVertex = eNew;
+        graph->vertexM[iPrereqVertex].successorList = eNew;
         eNew->pNextEdge = NULL;
     }
     else
