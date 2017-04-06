@@ -52,6 +52,7 @@ Notes:
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
     EdgeNode *eNew = allocateEdgeNode();
+    EdgeNode *eCurrent;
     eNew->iPrereqVertex = iPrereqVertex;
     eNew->iSuccVertex = iCourseVertex;
     //set the courseVertex prereqlist vertex to the ones passed
@@ -62,8 +63,11 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     }
     else
     {
-        graph->vertexM[iCourseVertex].prereqList->pNextEdge = eNew;
-        eNew->pNextEdge = NULL;
+        //made some changes to insert new edge at head of list I think this might work better
+        graph->vertexM[iCourseVertex].prereqList = eCurrent;
+        eNew->pNextEdge = eCurrent;
+        graph->vertexM[iCourseVertex].prereqList = eNew;
+        eCurrent->pNextEdge = NULL;
     }
     //set the prereqVertex successorlist vertex to the ones passed
     if (graph->vertexM[iPrereqVertex].successorList->iSuccVertex == -1) // check if successor list already had Edges
@@ -73,8 +77,11 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     }
     else
     {
-        graph->vertexM[iPrereqVertex].successorList->pNextEdge = eNew;
-        eNew->pNextEdge = NULL;
+        //made some changes to insert new edge at head of list
+        graph->vertexM[iPrereqVertex].successorList = eCurrent;
+        eNew->pNextEdge = eCurrent;
+        graph->vertexM[iPreregVertex].successorList = eNew;
+        eCurrent->pNextEdge = NULL;
     }
 }
 /************************** newGraph ********************************
