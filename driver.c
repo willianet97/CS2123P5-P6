@@ -34,9 +34,12 @@ int main(int argc, char *argv[])
          , szDummy
          , graph->vertexM[iVertexCnt].szCourseId
          , graph->vertexM[iVertexCnt].szCourseName);
+
       if(iScanfCnt < 3)
         printf("Course input invalid\n");
+
       strcpy(szName, graph->vertexM[iVertexCnt].szCourseId);
+
       if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
         insertCourse(graph, iVertexCnt); 
@@ -44,15 +47,15 @@ int main(int argc, char *argv[])
         iVertexCnt++;
         graph->iNumVertices++;
       }
-      printf("%s %s %s"
-         , szDummy
-         , graph->vertexM[iVertexCnt].szCourseId
+      printf("%s %s %s\n"
+         , szCommand
+         , szName
          , graph->vertexM[iVertexCnt].szCourseName);
       //we'll add in the exception that the prereq inserted a course to overwrite the tbd later
     }
     
     //prereq should already exist otherwise this will cause an error
-    if(strcmp(szCommand, "PREREQ") == 0)
+    else if(strcmp(szCommand, "PREREQ") == 0)
     {
       iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
@@ -66,7 +69,7 @@ int main(int argc, char *argv[])
       {
         // create Vertex for new PreReqCourse which wasnt in the Graph before
         strcpy(graph->vertexM[iVertexCnt].szCourseId, szPrereq);
-        strcpy(graph->vertexM[iVertexCnt].szCourseName, "TBD" );
+        strcpy(graph->vertexM[iVertexCnt].szCourseName, "TBD");
         // allocate edgeNodes for new course
         insertCourse(graph, iVertexCnt);
         graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
@@ -79,12 +82,12 @@ int main(int argc, char *argv[])
         printf("Prereq insertion causes cycle\n");
       else
         insertPrereq(graph, iPV, findCourse(graph, szName));
+        printf("%s %s\n"
+            , szCommand
+            , szPrereq);
     }
-    printf("%s %s"
-         , szDummy
-         , szPrereq);
     
-    if(strcmp(szCommand, "PRTONE") == 0)
+    else if(strcmp(szCommand, "PRTONE") == 0)
     {
       iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
@@ -93,18 +96,18 @@ int main(int argc, char *argv[])
         printf("Printone input invalid\n");
       //calls printone function
       printOne(graph, findCourse(graph, szPrintname));
-      printf("%s %s"
-         , szDummy
+      printf("%s %s\n"
+         , szCommand
          , szPrintname);
     }
     
     //just calls print function, no scanf required
-    if(strcmp(szCommand, "PRTALL") == 0)
+    else if(strcmp(szCommand, "PRTALL") == 0)
     {
       printAllInList(graph);
     }
     
-    if(strcmp(szCommand, "PRTSUCC") == 0)
+    else if(strcmp(szCommand, "PRTSUCC") == 0)
     {
       iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
@@ -114,12 +117,12 @@ int main(int argc, char *argv[])
       //calls print successor
       //pretty sure this is for successor
       printTraversal(graph, findCourse(graph, szPrintname), 1);
-      printf("%s %s"
-         , szDummy
+      printf("%s %s\n"
+         , szCommand
          , szPrintname);
     }
     
-    if(strcmp(szCommand, "MAXCHAIN") == 0)
+    else if(strcmp(szCommand, "MAXCHAIN") == 0)
     {
       iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
@@ -128,12 +131,12 @@ int main(int argc, char *argv[])
         printf("Max Chain input invalid\n");
       //calls max chain
       maxChain(graph, findCourse(graph, szPrintname));
-      printf("%s %s"
-         , szDummy
+      printf("%s %s\n"
+         , szCommand
          , szPrintname);
     }
     
-    if(strcmp(szCommand, "PRTLONGS") == 0)
+    else if(strcmp(szCommand, "PRTLONGS") == 0)
     {
       iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
@@ -144,24 +147,24 @@ int main(int argc, char *argv[])
       int pathM[MAX_VERTICES];
       printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)));
-      printf("%s %s"
-         , szDummy
+      printf("%s %s\n"
+         , szCommand
          , szPrintname);
     }
     
     //just calls print function, no scanf required
-    if(strcmp(szCommand, "PRTSINKS") == 0)
+    else if(strcmp(szCommand, "PRTSINKS") == 0)
     {
       printSinks(graph);
     }
     
     //just calls print function, no scanf required
-    if(strcmp(szCommand, "PRTSOURCES") == 0)
+    else if(strcmp(szCommand, "PRTSOURCES") == 0)
     {
       printSources( graph);
     }
     
-    if(strcmp(szCommand, "*"))
+    else if(strcmp(szCommand, "*"))
     {
       char szComments[50];
       iScanfCnt = sscanf(szInputBuffer, "%s['\n]", szComments);
