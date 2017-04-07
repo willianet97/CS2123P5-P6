@@ -104,6 +104,7 @@ int main(int argc, char *argv[])
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTALL") == 0)
     {
+      printf("%s", szCommand);
       printAllInList(graph);
     }
     
@@ -130,10 +131,10 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Max Chain input invalid\n");
       //calls max chain
-      maxChain(graph, findCourse(graph, szPrintname));
-      printf("%s %s\n"
+      printf("%s %s\n\tMax Chain Length is %d"
          , szCommand
-         , szPrintname);
+         , szPrintname
+         , maxChain(graph, findCourse(graph, szPrintname));
     }
     
     else if(strcmp(szCommand, "PRTLONGS") == 0)
@@ -155,12 +156,14 @@ int main(int argc, char *argv[])
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTSINKS") == 0)
     {
+      printf("%s", szCommand);
       printSinks(graph);
     }
     
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTSOURCES") == 0)
     {
+      printf("%s", szCommand);
       printSources( graph);
     }
     
@@ -168,6 +171,7 @@ int main(int argc, char *argv[])
     {
       char szComments[50];
       iScanfCnt = sscanf(szInputBuffer, "%s['\n]", szComments);
+      printf("%s", szComments);
     }
   }
 }
