@@ -23,6 +23,8 @@ void printAllInList(Graph graph)
   //for loop used to traverse all vertices
   for (i = 0; i < graph->iNumVertices; i++)
   {
+    //in the terminal the segfault always kicks in here for some reason but I don't see any errors
+    //unless its passed a null graph which it isn't and it works fine in ddd
     //prints the vertex, te, course id, course name
     printf("%2d %2d %-6s %-20s"
          ,i
