@@ -11,8 +11,7 @@ void printAllInList(Graph graph)
   EdgeNode *e;      //pointer variable used for traversing adjacency list
   int iCount = 0;   //local variable used for printing ...
   int i;            //local variable used for traversing vertices
-  int iVertex = 0;  //local variable used to hold vertex number
-  /*header*/
+   /*header*/
   printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
          ,"Vx"
          ,"TE"
@@ -35,11 +34,9 @@ void printAllInList(Graph graph)
     //may need tweaking or reworking
      for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
      {
-       //iVertex used to hold the vertex number of the prereq
-       iVertex = e->iPrereqVertex;
        //prints the prereq
        printf("%s\t"
-              ,graph->vertexM[iVertex].szCourseId);
+              ,graph->vertexM[e->iPrereqVertex].szCourseId);
        //iterate iCount to see if ... is needed to be printed
        iCount++;
      }
@@ -56,9 +53,8 @@ void printAllInList(Graph graph)
     //may need tweaking or reworking
      for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
      {
-       iVertex = e->iSuccVertex;
        printf("%s"
-              ,graph->vertexM[iVertex].szCourseId);
+              ,graph->vertexM[e->iSuccVertex].szCourseId);
      }
     printf("\n");
   }      
