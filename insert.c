@@ -85,7 +85,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
         //set eNew next edge to current head
         eNew->pNextEdge = eCurrent;
         //make eNew the new head
-        graph->vertexM[iPreregVertex].successorList = eNew;
+        graph->vertexM[iPrereqVertex].successorList = eNew;
         //set eCurrent next edge to NULL
         eCurrent->pNextEdge = NULL;
     }
