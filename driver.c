@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
       }
       //takes prereq and course subscripts and inserts them
       bCycle = causesCycle(graph, iPV, findCourse(graph, szName));
-      if (bCycle == 0)
+      if (bCycle == TRUE)
         printf("Prereq insertion causes cycle\n");
       else
         insertPrereq(graph, iPV, findCourse(graph, szName));
