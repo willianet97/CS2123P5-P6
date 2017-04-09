@@ -66,6 +66,7 @@ void printOne(Graph graph, int iVertex)
 {
   EdgeNode *e;  //local pointer variable used to traverse adjacency list
   int iCount = 0; //local variable used for printing ...
+  int i;
   /*header*/
   printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
          ,"Vx"
