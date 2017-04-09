@@ -51,11 +51,9 @@ Notes:
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-    EdgeNode *eNew = allocateEdgeNode();    //new node to be inserted
+    EdgeNode *eNew = allocateEdgeNode(iPrereqVertex, iCourseVertex);    //new node to be inserted
     EdgeNode *eCurrent;     //pointer to the current head of the list
-    int iPre = iPrereqVertex;
-    eNew->iPrereqVertex = iPre;    //sets the new node prereq vertex to passed in value
-    eNew->iSuccVertex = iCourseVertex;      //sets the new node succ vertex to passed in course vertex
+    
     //set the courseVertex prereqlist vertex to the ones passed
     if (graph->vertexM[iCourseVertex].prereqList == NULL)// check if prereqList list already had Edges
     {
@@ -120,31 +118,34 @@ Graph newGraph()
    return g;
 }
 /************************** allocateEdgeNode ********************************
-EdgeNode *allocateEdgeNode()
+EdgeNode *allocateEdgeNode(int iPrereqVertex, int iSuccVertex)
 Purpose:
     Allocates a new edge node.
 Parameters:
-    n/a
+    I int iPrereqVertex   index of prerequisite to be added to node
+    I int iSuccVertex     index of successor to be added to node
 Returns:
     A pointer to the new edge node.
 Notes:
     n/a
 **************************************************************************/
-EdgeNode * allocateEdgeNode()
+EdgeNode * allocateEdgeNode(int iPrereqVertex, int iSuccVertex)
 {
   // allocate memory for an edge node
-  EdgeNode *pNew;
+  EdgeNode *eNew;
   
-  pNew = (EdgeNode *) malloc(sizeof(EdgeNode));
+  eNew = (EdgeNode *) malloc(sizeof(EdgeNode));
   
   // check if memory is available
-  if(pNew == NULL)
+  if(eNew == NULL)
     ErrExit(ERR_ALGORITHM, "No available memory for edge node");
   
-  // assign empty values
-  pNew->pNextEdge = NULL;
-  pNew->iPrereqVertex = -1;
-  pNew->iSuccVertex = -1;
+  // make this node's next edge NULL
+  eNew->pNextEdge = NULL;
+  
+  // insert values from prereq and succ parameters
+  eNew->iPrereqVertex = iPrereqVertex;
+  eNew->iSuccVertex = iSuccVertex;
    
-  return pNew;
+  return eNew;
 }
