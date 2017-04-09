@@ -53,7 +53,8 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
     EdgeNode *eNew = allocateEdgeNode();    //new node to be inserted
     EdgeNode *eCurrent;     //pointer to the current head of the list
-    eNew->iPrereqVertex = iPrereqVertex;    //sets the new node prereq vertex to passed in value
+    int iPre = iPrereqVertex;
+    eNew->iPrereqVertex = iPre;    //sets the new node prereq vertex to passed in value
     eNew->iSuccVertex = iCourseVertex;      //sets the new node succ vertex to passed in course vertex
     //set the courseVertex prereqlist vertex to the ones passed
     if (graph->vertexM[iCourseVertex].prereqList == NULL)// check if prereqList list already had Edges
