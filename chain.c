@@ -34,7 +34,7 @@ use return of maxchain as iLongLength*/
 /*function needs a lot of work just some rudimentary basics jotted down may even be wrong so far*/
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength)
 {
-  if(iVertex <= 0)
+  if(iVertex <= 0) // this condition isn't correct
     return;
   EdgeNode *e;
   int i;
@@ -48,10 +48,11 @@ void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLon
     if(iLevel == iLongLength)
     {
       printf("\tLongest chains beginning with %s\n", graph->vertexM[pathM[0]].szCourseId); // this will always be 0
-      for(i = 0; i < iLevel; i++){
-        printf("%-6s", graph->vertexM[pathM[i]].szCourseId);
+      for(i = 0; i < iLevel; i++)
+      {
+        printf("%-8s", graph->vertexM[pathM[i]].szCourseId);
       }
-      printf("%-6s\n", graph->vertexM[pathM[iLevel]].szCourseId);
+      printf("%-8s\n", graph->vertexM[pathM[iLevel]].szCourseId);
     }
   }
 }
