@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
       printf("%s %s\n\tMax Chain Length is %d"
          , szCommand
          , szPrintname
-         , maxChain(graph, findCourse(graph, szPrintname));
+         , maxChain(graph, findCourse(graph, szPrintname)));
     }
     
     else if(strcmp(szCommand, "PRTLONGS") == 0)
