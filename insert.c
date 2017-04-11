@@ -30,7 +30,7 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
   EdgeNode *e; // EdgeNode for traversal
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   { 
-      if(causesCycle(graph, iPrereqVertex,  e -> iSuccVertex))
+      if(causesCycle(graph, iPrereqVertex,  e->iSuccVertex))
          return TRUE;
   }
   
