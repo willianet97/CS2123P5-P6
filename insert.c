@@ -63,7 +63,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     else
     {
         //set eCurrent to head of list
-        graph->vertexM[iCourseVertex].prereqList = eCurrent;
+        eCurrent = graph->vertexM[iCourseVertex].prereqList;
         //set eNew next edge to the current head
         eNew->pNextEdge = eCurrent;
         //make eNew the current head
@@ -80,7 +80,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     else
     {
         //set eCurrent to point to head of list
-        graph->vertexM[iPrereqVertex].successorList = eCurrent;
+        eCurrent = graph->vertexM[iPrereqVertex].successorList;
         //set eNew next edge to current head
         eNew->pNextEdge = eCurrent;
         //make eNew the new head
