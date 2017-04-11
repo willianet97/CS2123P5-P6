@@ -44,7 +44,7 @@ void printAllInList(Graph graph)
     //if less than 4 prints the appropriate number of ...
      if (iCount < 4)
      {
-        for (i = iCount; i <= 4; i++)
+        for (i = iCount; i < 4; i++)
         {
           printf("...\t");
         }
@@ -93,7 +93,7 @@ void printOne(Graph graph, int iVertex)
   //if iCount < 4 print appropriate number of ...
   if (iCount < 4)
   {
-    for (i = iCount; i <= 4; i++)
+    for (i = iCount; i < 4; i++)
     {
       printf("...\t");
     }
