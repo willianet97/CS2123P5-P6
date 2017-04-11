@@ -26,11 +26,11 @@ Notes:
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 {
   if(iVertex == iPrereqVertex)
-     return TRUE; 
+     return TRUE;
   EdgeNode *e; // EdgeNode for traversal
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   { 
-      if(causesCycle(graph, iPrereqVertex,  e->iSuccVertex))
+      if(causesCycle(graph, e->iPrereqVertex,  e->iSuccVertex)) // e->iPrereqVertex is not correct but for now it prevents segfaults
          return TRUE;
   }
   
