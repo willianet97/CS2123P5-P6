@@ -11,6 +11,7 @@ void printAllInList(Graph graph)
   EdgeNode *e;      //pointer variable used for traversing adjacency list
   int iCount = 0;   //local variable used for printing ...
   int i;            //local variable used for traversing vertices
+  int j;
    /*header*/
   printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
          ,"Vx"
@@ -44,7 +45,7 @@ void printAllInList(Graph graph)
     //if less than 4 prints the appropriate number of ...
      if (iCount < 4)
      {
-        for (i = iCount; i < 4; i++)
+        for (j = iCount; j < 4; j++)
         {
           printf("...\t");
         }
