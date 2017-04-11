@@ -119,7 +119,7 @@ void printSources(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //conditional if the vertex has no prereq print that vertex
-    if (graph->vertexM[i].prereqList->iPrereqVertex == -1)
+    if (graph->vertexM[i].prereqList == NULL)
     {
       printf("%-6s %-20s\n"
             ,graph->vertexM[i].szCourseId
@@ -139,7 +139,7 @@ void printSinks(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //if the vertex has no successor print that vertex
-    if (graph->vertexM[i].successorList->iSuccVertex == -1)
+    if (graph->vertexM[i].successorList == NULL)
     {
       printf("%-6s %-20s\n"
             ,graph->vertexM[i].szCourseId
