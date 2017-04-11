@@ -153,7 +153,6 @@ may need serious reworking*/
 void printTraversal(Graph graph, int iVertex, int iIndent)
 {
   int i;  //local varible used for indentations
-  int iVertexSucc = 0;  //local variable used to hold successor vertex number
   EdgeNode *e;  //local pointer variable used to traverse adjacency list
   //for loop used to traverse successor list of specified vertex
   for (e = graph->vertexM[iVertex].successorList; e != NULL;
@@ -164,11 +163,9 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
     {
       printf("  ");
     }
-    //assigns iVertexSucc to the successor vertex of the specified original vertex and prints
-    iVertexSucc = e->iSuccVertex;
     printf("%-6s %-20s"
-           ,graph->vertexM[iVertexSucc].szCourseId
-           ,graph->vertexM[iVertexSucc].szCourseName);
+           ,graph->vertexM[e->iSuccVertex].szCourseId
+           ,graph->vertexM[e->iSuccVertex].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
     //p->iSuccVertex may not be right
     printTraversal(graph, e->iSuccVertex,iIndent+1);
