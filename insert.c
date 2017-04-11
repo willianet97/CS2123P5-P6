@@ -51,7 +51,7 @@ Notes:
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-    EdgeNode *eNew = allocateEdgeNode(iPrereqVertex, iCourseVertex);    //new node to be inserted
+    EdgeNode *eNew = allocateEdgeNode();    //new node to be inserted
     EdgeNode *eCurrent;     //pointer to the current head of the list
     
     eNew->iPrereqVertex = iPrereqVertex;
@@ -125,8 +125,7 @@ EdgeNode *allocateEdgeNode(int iPrereqVertex, int iSuccVertex)
 Purpose:
     Allocates a new edge node.
 Parameters:
-    I int iPrereqVertex   index of prerequisite to be added to node
-    I int iSuccVertex     index of successor to be added to node
+    n/a
 Returns:
     A pointer to the new edge node.
 Notes:
@@ -146,7 +145,7 @@ EdgeNode * allocateEdgeNode()
   // make this node's next edge NULL
   eNew->pNextEdge = NULL;
   
-  // insert values from prereq and succ parameters
+  // assign empty values
   eNew->iPrereqVertex = -1;
   eNew->iSuccVertex = -1;
    
