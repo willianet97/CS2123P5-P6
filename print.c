@@ -163,7 +163,7 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
     {
       printf("  ");
     }
-    printf("%-6s %-20s"
+    printf("%-6s %-20s\n"
            ,graph->vertexM[e->iSuccVertex].szCourseId
            ,graph->vertexM[e->iSuccVertex].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
