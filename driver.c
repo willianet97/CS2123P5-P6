@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
       if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
         insertCourse(graph, iVertexCnt); 
-        graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
+        graph->vertexM[iVertexCnt].prereqList = NULL;
         iVertexCnt++;
         graph->iNumVertices++;
       }
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         strcpy(graph->vertexM[iVertexCnt].szCourseName, "TBD");
         // allocate edgeNodes for new course
         insertCourse(graph, iVertexCnt);
-        graph->vertexM[iVertexCnt].prereqList->iPrereqVertex = -1;
+        graph->vertexM[iVertexCnt].prereqList = NULL;
         iVertexCnt++;
         graph->iNumVertices++;
       }
@@ -234,10 +234,8 @@ char * getToken(char *pszInputTxt, char szToken[], int iTokenSize)
 /**********************************/
 void insertCourse(Graph graph, int iVertex)
 {
-  EdgeNode *e = allocateEdgeNode();
-  graph->vertexM[iVertex].prereqList = e;
-  EdgeNode *p = allocateEdgeNode();
-  graph->vertexM[iVertex].successorList = p;
+  graph->vertexM[iVertex].prereqList = NULL;
+  graph->vertexM[iVertex].successorList = NULL;
 }
 /***************************************/
 void ErrExit(int iexitRC, char szFmt[], ... )
