@@ -131,9 +131,10 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Max Chain input invalid\n");
       //calls max chain
-      printf("%s %s\n\tMax Chain Length is %d"
+      printf("%s %s\n   Max Chain Length for %s is %d\n"
          , szCommand
          , szPrintname
+         , graph->vertexM[findCourse(graph, szPrintname)].szCourseId
          , maxChain(graph, findCourse(graph, szPrintname)));
     }
     
