@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 {
   int iScanfCnt = 0;
   char szName[50];
+  char szCourse[50];
   char szCommand[50];
   char szInputBuffer[100];
   char szPrereq[50];
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
         printf("Course input invalid\n");
 
       strcpy(szName, graph->vertexM[iVertexCnt].szCourseId);
+      strcpy(szName, graph->vertexM[iVertexCnt].szCourseName);
 
       if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
@@ -50,7 +52,7 @@ int main(int argc, char *argv[])
       printf("%s %s %s\n"
          , szCommand
          , szName
-         , graph->vertexM[iVertexCnt].szCourseName);
+         , szCourse);
       //we'll add in the exception that the prereq inserted a course to overwrite the tbd later
     }
     
