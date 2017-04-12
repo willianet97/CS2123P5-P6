@@ -95,10 +95,10 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Printone input invalid\n");
       //calls printone function
-      printOne(graph, findCourse(graph, szPrintname));
       printf("%s %s\n"
          , szCommand
          , szPrintname);
+      printOne(graph, findCourse(graph, szPrintname));
     }
     
     //just calls print function, no scanf required
@@ -117,10 +117,10 @@ int main(int argc, char *argv[])
         printf("Print successor input invalid\n");
       //calls print successor
       //pretty sure this is for successor
-      printTraversal(graph, findCourse(graph, szPrintname), 1);
       printf("%s %s\n"
          , szCommand
          , szPrintname);
+      printTraversal(graph, findCourse(graph, szPrintname), 1);
     }
     
     else if(strcmp(szCommand, "MAXCHAIN") == 0)
@@ -145,12 +145,12 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Print long input invalid");
       //calls print longs
+      printf("%s %s\n"
+         , szCommand
+         , szPrintname)
       int pathM[MAX_VERTICES];
       printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)));
-      printf("%s %s\n"
-         , szCommand
-         , szPrintname);
     }
     
     //just calls print function, no scanf required
