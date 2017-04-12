@@ -120,6 +120,9 @@ int main(int argc, char *argv[])
       printf("%s %s\n"
          , szCommand
          , szPrintname);
+      printf("%-6s %-20s\n"
+             ,graph->vertexM[findCourse(graph, szPrintname)].szCourseId
+             ,graph->vertexM[findCourse(graph, szPrintname)].szCourseName);
       printTraversal(graph, findCourse(graph, szPrintname), 1);
     }
     
