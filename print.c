@@ -21,13 +21,13 @@ void printAllInList(Graph graph)
          ,"Prereqs"
          ,"Successors");
   //for loop used to traverse all vertices
-  for (i = 0; i < graph->iNumVertices; i++)
+  for (i = 0; i < graph->iNumVertices; i++) 
   {
     //in the terminal the segfault always kicks in here for some reason but I don't see any errors
     //unless its passed a null graph which it isn't and it works fine in ddd
     //prints the vertex, te, course id, course name
     printf("%2d %2d %-6s %-20s"
-         ,i
+         ,i+1
          ,0 //te
          ,graph->vertexM[i].szCourseId
          ,graph->vertexM[i].szCourseName);
@@ -78,7 +78,7 @@ void printOne(Graph graph, int iVertex)
          ,"Successors");
   //prints the vertex, te, courseId, courseName
   printf("%2d %2d %-6s %-20s"
-         ,iVertex
+         ,iVertex+1
          ,0 //te
          ,graph->vertexM[iVertex].szCourseId
          ,graph->vertexM[iVertex].szCourseName);
