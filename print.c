@@ -13,7 +13,7 @@ void printAllInList(Graph graph)
   int i;            //local variable used for traversing vertices
   int j;
    /*header*/
-  printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
+  printf("%-2s %-2s %-6s %-20s       %-8s\t\t\t%-15s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -69,7 +69,7 @@ void printOne(Graph graph, int iVertex)
   int iCount = 0; //local variable used for printing ...
   int i;
   /*header*/
-  printf("%-2s %-2s %-6s %-20s %-8s\t\t\t %-15s\n"
+  printf("%-2s %-2s %-6s %-20s%-8s\t\t\t%-15s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
