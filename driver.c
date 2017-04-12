@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTALL") == 0)
     {
-      printf("%s", szCommand);
+      printf("%s\n", szCommand);
       printAllInList(graph);
     }
     
