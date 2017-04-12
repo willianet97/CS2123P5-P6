@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     //and add it to the graph with the right prereqs and successors
     if(strcmp(szCommand, "COURSE") == 0)
     {
-      iScanfCnt = sscanf(szInputBuffer, "%s %s %s"
+      iScanfCnt = sscanf(szInputBuffer, "%s %s %[^\n]"
          , szDummy
          , graph->vertexM[iVertexCnt].szCourseId
          , graph->vertexM[iVertexCnt].szCourseName);
