@@ -174,11 +174,15 @@ int main(int argc, char *argv[])
       printSources( graph);
     }
     
-    else if(strcmp(szCommand, "*"))
+    // shows comments marked with asterisks in output
+    else if(strcmp(szCommand, "*") == 0)
     {
       char szComments[50];
       iScanfCnt = sscanf(szInputBuffer, "%[^\n]", szComments);
-      printf("%s", szComments);
+      if(iScanfCnt != 1)
+        printf("Bad comments input");
+
+      printf("%s\n", szComments);
     }
   }
 }
