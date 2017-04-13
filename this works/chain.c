@@ -7,22 +7,22 @@
 #include "cs2123p5.h"
 int maxChain(Graph graph, int iVertex)
 {
-  if(iVertex <= 0)
+  if(iVertex < 0)
     return 0;
   EdgeNode *e;// does this have to be malloced too? i'm suddenly forgetting the nitty gritty details.... no its a local pointer variable
-  int iCount;
-  int iFirst;
+  int iCount = 1;// counts itself too
   // traverse to the adjacent vertices
   //goes through successor lists
   for (e = graph->vertexM[iVertex].successorList; e != NULL; 
      e = e->pNextEdge)
   {
     //within successor lists it takes each path
-    return(iCount += maxChain(graph, e->iSuccVertex));
+    iCount = 1 + maxChain(graph, e->iSuccVertex);// this almost works
     //somehow this should be reset
     //but no quite like this because if it has more
     //than one successor it subracts too many
   }
+  return iCount;
 }
 /***********************************************************/
 /*maxchain is always called before this function
