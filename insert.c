@@ -30,7 +30,7 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
   EdgeNode *e; // EdgeNode for traversal
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   { 
-      if(causesCycle(graph, iPrereqVertex,  e->iSuccVertex))
+      if(causesCycle(graph, iPrereqVertex,  e->iSuccVertex)) // e->iPrereqVertex is not correct but for now it prevents segfaults
          return TRUE;
   }
   
@@ -52,10 +52,13 @@ Notes:
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
     EdgeNode *eNew = allocateEdgeNode();    //new node to be inserted
+    EdgeNode *eNew2 = allocateEdgeNode();
     EdgeNode *eCurrent;     //pointer to the current head of the list
     
     eNew->iPrereqVertex = iPrereqVertex;
     eNew->iSuccVertex = iCourseVertex;
+    eNew2->iPrereqVertex = iPrereqVertex;
+    eNew2->iSuccVertex = iCourseVertex;
     
     //set the courseVertex prereqlist vertex to the ones passed
     if (graph->vertexM[iCourseVertex].prereqList == NULL)// check if prereqList list already had Edges
@@ -72,24 +75,22 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
         //make eNew the current head
         graph->vertexM[iCourseVertex].prereqList = eNew;
         //set eCurrents next edge to NULL
-        eCurrent->pNextEdge = NULL;
     }
     //set the prereqVertex successorlist vertex to the ones passed
     if (graph->vertexM[iPrereqVertex].successorList == NULL) // check if successor list already had Edges
     {
-        graph->vertexM[iPrereqVertex].successorList = eNew;
-        eNew->pNextEdge = NULL;
+        graph->vertexM[iPrereqVertex].successorList = eNew2;
+        eNew2->pNextEdge = NULL;
     }
     else
     {
         //set eCurrent to point to head of list
         eCurrent = graph->vertexM[iPrereqVertex].successorList;
         //set eNew next edge to current head
-        eNew->pNextEdge = eCurrent;
+        eNew2->pNextEdge = eCurrent;
         //make eNew the new head
-        graph->vertexM[iPrereqVertex].successorList = eNew;
+        graph->vertexM[iPrereqVertex].successorList = eNew2;
         //set eCurrent next edge to NULL
-        eCurrent->pNextEdge = NULL;
     }
 }
 /************************** newGraph ********************************

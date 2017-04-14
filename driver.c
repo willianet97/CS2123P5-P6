@@ -40,12 +40,11 @@ int main(int argc, char *argv[])
         printf("Course input invalid\n");
 
       strcpy(szName, graph->vertexM[iVertexCnt].szCourseId);
-      strcpy(szName, graph->vertexM[iVertexCnt].szCourseName);
+      strcpy(szCourse, graph->vertexM[iVertexCnt].szCourseName);
 
       if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
         insertCourse(graph, iVertexCnt); 
-        graph->vertexM[iVertexCnt].prereqList = NULL;
         iVertexCnt++;
         graph->iNumVertices++;
       }
@@ -67,23 +66,23 @@ int main(int argc, char *argv[])
         //local variable iPV to hold findCourse info
       int iPV = findCourse(graph, szPrereq);
       // if PreReqCourse is not in the vertex, then insert it with TBD szCourseName and its id
-      if (iPV < 0) //findcourse returns -1 if course not found because NULL won't work unless we figure that out
+      if (iPV == -1) //findcourse returns -1 if course not found because NULL won't work unless we figure that out
+      
       {
         // create Vertex for new PreReqCourse which wasnt in the Graph before
         strcpy(graph->vertexM[iVertexCnt].szCourseId, szPrereq);
         strcpy(graph->vertexM[iVertexCnt].szCourseName, "TBD");
         // allocate edgeNodes for new course
         insertCourse(graph, iVertexCnt);
-        graph->vertexM[iVertexCnt].prereqList = NULL;
         iVertexCnt++;
         graph->iNumVertices++;
       }
       //takes prereq and course subscripts and inserts them
-      bCycle = causesCycle(graph, iPV, findCourse(graph, szName));
+      bCycle = causesCycle(graph, findCourse(graph, szPrereq), findCourse(graph, szName));
       if (bCycle == TRUE)
         printf("Prereq insertion causes cycle\n");
       else
-        insertPrereq(graph, iPV, findCourse(graph, szName));
+        insertPrereq(graph, findCourse(graph, szPrereq), findCourse(graph, szName));
         printf("%s %s\n"
             , szCommand
             , szPrereq);
@@ -100,8 +99,9 @@ int main(int argc, char *argv[])
       printf("%s %s\n"
          , szCommand
          , szPrintname);
+
       printOne(graph, findCourse(graph, szPrintname));
-    }
+     }
     
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTALL") == 0)
@@ -123,8 +123,9 @@ int main(int argc, char *argv[])
          , szCommand
          , szPrintname);
       printf("%-6s %-20s\n"
-             ,graph->vertexM[findCourse(graph, szPrintname)].szCourseId
-             ,graph->vertexM[findCourse(graph, szPrintname)].szCourseName);
+            ,graph->vertexM[findCourse(graph, szPrintname)].szCourseId
+            ,graph->vertexM[findCourse(graph, szPrintname)].szCourseName);
+
       printTraversal(graph, findCourse(graph, szPrintname), 1);
     }
     
@@ -136,11 +137,11 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Max Chain input invalid\n");
       //calls max chain
-      printf("%s %s\n   Max Chain Length for %s is %d\n"
+      printf("%s %s\n   Max Chain for %s is %d\n"
          , szCommand
          , szPrintname
          , graph->vertexM[findCourse(graph, szPrintname)].szCourseId
-         , maxChain(graph, findCourse(graph, szPrintname)));
+         , maxChain(graph, findCourse(graph, szPrintname)) + 1);
     }
     
     else if(strcmp(szCommand, "PRTLONGS") == 0)
@@ -153,12 +154,12 @@ int main(int argc, char *argv[])
       //calls print longs
       printf("%s %s\n"
          , szCommand
-         , szPrintname)
+         , szPrintname);
       int pathM[MAX_VERTICES];
-      printf("\tLongest chains beginning with %s\n", graph->vertexM[findCourse(graph, szPrintname)].szCourseId);
-      memser(pathM, -1, MAX_VERTICES * sizeof(int));
+      printf("\tLongest chains beginning with %s\n", graph->vertexM[findCourse(graph, szPrintname)].szCourseId); // this will always be 0
+      memset(pathM, -1, MAX_VERTICES * sizeof(int));
       printLongChains(graph, findCourse(graph, szPrintname), pathM
-                      , 0, maxChain(graph, findCourse(graph, szPrintname)));
+                      , 0, maxChain(graph, findCourse(graph, szPrintname)) + 1);
     }
     
     //just calls print function, no scanf required
@@ -175,11 +176,15 @@ int main(int argc, char *argv[])
       printSources( graph);
     }
     
-    else if(strcmp(szCommand, "*"))
+    // shows comments marked with asterisks in output
+    else if(strcmp(szCommand, "*") == 0)
     {
       char szComments[50];
-      iScanfCnt = sscanf(szInputBuffer, "%s['\n]", szComments);
-      printf("%s", szComments);
+      iScanfCnt = sscanf(szInputBuffer, "%[^\n]", szComments);
+      if(iScanfCnt != 1)
+        printf("Bad comments input");
+
+      printf("%s\n", szComments);
     }
   }
 }

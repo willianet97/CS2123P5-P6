@@ -10,7 +10,7 @@ void printAllInList(Graph graph)
 {
   EdgeNode *e;      //pointer variable used for traversing adjacency list
   int iCount = 0;   //local variable used for printing ...
-  int i;            //local variable used for traversing vertices
+  int i;    //local variable used for traversing vertices
   int j;
    /*header*/
   printf("%-2s %-2s %-6s %-20s       %-8s\t\t\t%-15s\n"
@@ -21,12 +21,12 @@ void printAllInList(Graph graph)
          ,"Prereqs"
          ,"Successors");
   //for loop used to traverse all vertices
-  for (i = 0; i < graph->iNumVertices; i++) 
+  for (i = 0; i < graph->iNumVertices; i++)
   {
     //in the terminal the segfault always kicks in here for some reason but I don't see any errors
     //unless its passed a null graph which it isn't and it works fine in ddd
     //prints the vertex, te, course id, course name
-    printf("%2d %2d %-6s %-20s"
+    printf("%2d %2d %-6s %-20s\t"
          ,i+1
          ,0 //te
          ,graph->vertexM[i].szCourseId
@@ -54,7 +54,7 @@ void printAllInList(Graph graph)
     //may need tweaking or reworking
      for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
      {
-       printf("%s"
+       printf("%s\t"
               ,graph->vertexM[e->iSuccVertex].szCourseId);
      }
     printf("\n");
@@ -106,6 +106,7 @@ void printOne(Graph graph, int iVertex)
     printf("%s\t"
            ,graph->vertexM[e->iSuccVertex].szCourseId);
   }
+  
   printf("\n");
 }
 /*********************************/
