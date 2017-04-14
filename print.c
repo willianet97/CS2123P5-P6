@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "cs2123p5.h"
-
+//print
 void printAllInList(Graph graph)
 {
   EdgeNode *e;      //pointer variable used for traversing adjacency list
