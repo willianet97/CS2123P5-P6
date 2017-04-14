@@ -9,11 +9,12 @@
 void printAllInList(Graph graph)
 {
   EdgeNode *e;      //pointer variable used for traversing adjacency list
-  int iCount = 0;   //local variable used for printing ...
+  int iCount;   //local variable used for printing ...
+  int iCount2;
   int i;    //local variable used for traversing vertices
   int j;
    /*header*/
-  printf("%-2s %-2s %-6s %-20s       %-8s\t\t\t%-15s\n"
+  printf("%-2s %-2s %-7s %-20s %-8s\t\t\t        %-22s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -23,10 +24,12 @@ void printAllInList(Graph graph)
   //for loop used to traverse all vertices
   for (i = 0; i < graph->iNumVertices; i++)
   {
+    iCount = 0;
+    iCount2 = 0;
     //in the terminal the segfault always kicks in here for some reason but I don't see any errors
     //unless its passed a null graph which it isn't and it works fine in ddd
     //prints the vertex, te, course id, course name
-    printf("%2d %2d %-6s %-20s\t"
+    printf("%2d %2d %-7s%-22s"
          ,i+1
          ,0 //te
          ,graph->vertexM[i].szCourseId
@@ -36,18 +39,23 @@ void printAllInList(Graph graph)
      for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
      {
        //prints the prereq
-       printf("%s\t"
+       printf("%-7s\t"
               ,graph->vertexM[e->iPrereqVertex].szCourseId);
        //iterate iCount to see if ... is needed to be printed
        iCount++;
      }
+    if (iCount == 0)
+    {
+      printf("%-7s\t", "-");
+      iCount++;
+    }
     //conditional checking to see how many prereqs were printed
     //if less than 4 prints the appropriate number of ...
      if (iCount < 4)
      {
         for (j = iCount; j < 4; j++)
         {
-          printf("...\t");
+          printf("%-7s\t", "...");
         }
      }
     //for loop to traverse successors
@@ -56,7 +64,10 @@ void printAllInList(Graph graph)
      {
        printf("%s\t"
               ,graph->vertexM[e->iSuccVertex].szCourseId);
+       iCount2++;
      }
+    if (iCount2 == 0)
+      printf("-");
     printf("\n");
   }      
 }
@@ -67,9 +78,10 @@ void printOne(Graph graph, int iVertex)
 {
   EdgeNode *e;  //local pointer variable used to traverse adjacency list
   int iCount = 0; //local variable used for printing ...
+  int iCount2 = 0;
   int i;
   /*header*/
-  printf("%-2s %-2s %-6s %-20s%-8s\t\t\t%-15s\n"
+  printf("%-2s %-2s %-7s %-21s%-8s\t\t\t        %-20s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -77,7 +89,7 @@ void printOne(Graph graph, int iVertex)
          ,"Prereqs"
          ,"Successors");
   //prints the vertex, te, courseId, courseName
-  printf("%2d %2d %-6s %-20s"
+  printf("%2d %2d %-6s %-22s"
          ,iVertex+1
          ,0 //te
          ,graph->vertexM[iVertex].szCourseId
@@ -86,17 +98,22 @@ void printOne(Graph graph, int iVertex)
   //may need tweaking or reworking
   for (e = graph->vertexM[iVertex].prereqList; e != NULL; e = e->pNextEdge)
   {
-    printf("%s\t"
+    printf("%-7s\t"
            ,graph->vertexM[e->iPrereqVertex].szCourseId);
     //increment iCount for each prereq
     iCount++;
   }
+  if (iCount == 0)
+  {
+    printf("%-7s\t", "-");
+    iCount++;
+   }
   //if iCount < 4 print appropriate number of ...
   if (iCount < 4)
   {
     for (i = iCount; i < 4; i++)
     {
-      printf("...\t");
+      printf("%-7s\t", "...");
     }
   }
   //used to traverse succesor list
@@ -105,8 +122,12 @@ void printOne(Graph graph, int iVertex)
   {
     printf("%s\t"
            ,graph->vertexM[e->iSuccVertex].szCourseId);
+    iCount2++;
   }
-  
+  if (iCount2 == 0)
+  {
+    printf("-");
+  }
   printf("\n");
 }
 /*********************************/
@@ -114,6 +135,7 @@ void printSources(Graph graph)
 {
   int i;  //local variable used to traverse all vertices
   /*header*/
+  printf("\n");
   printf("%-6s %-20s\n"
          ,"Course"
          ,"Name");
@@ -134,6 +156,7 @@ void printSinks(Graph graph)
 {
   int i;  //local variable used to traverse all vertices
   /*header*/
+  printf("\n");
   printf("%-6s %-20s\n"
          ,"Course"
          ,"Name");
