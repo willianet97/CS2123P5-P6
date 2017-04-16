@@ -14,7 +14,7 @@ void printAllInList(Graph graph)
   int i;    //local variable used for traversing vertices
   int j;
    /*header*/
-  printf("%-2s %-2s %-7s %-20s %-8s\t\t\t        %-22s\n"
+  printf("%-2s %-2s %-7s %-20s  %-8s\t\t\t        %-22s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -29,7 +29,7 @@ void printAllInList(Graph graph)
     //in the terminal the segfault always kicks in here for some reason but I don't see any errors
     //unless its passed a null graph which it isn't and it works fine in ddd
     //prints the vertex, te, course id, course name
-    printf("%2d %2d %-7s%-22s"
+    printf("%2d %2d %-7s %-22s"
          ,i+1
          ,0 //te
          ,graph->vertexM[i].szCourseId
@@ -81,7 +81,7 @@ void printOne(Graph graph, int iVertex)
   int iCount2 = 0;
   int i;
   /*header*/
-  printf("%-2s %-2s %-7s %-21s%-8s\t\t\t        %-20s\n"
+  printf("%-2s %-2s %-7s %-21s %-8s\t\t\t        %-20s\n"
          ,"Vx"
          ,"TE"
          ,"Course"
@@ -89,7 +89,7 @@ void printOne(Graph graph, int iVertex)
          ,"Prereqs"
          ,"Successors");
   //prints the vertex, te, courseId, courseName
-  printf("%2d %2d %-6s %-22s"
+  printf("%2d %2d %-6s  %-22s"
          ,iVertex+1
          ,0 //te
          ,graph->vertexM[iVertex].szCourseId
