@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
          , szCommand
          , szPrintname);
       int pathM[MAX_VERTICES];
-      printf("\tLongest chains beginning with %s\n", graph->vertexM[findCourse(graph, szPrintname)].szCourseId); // this will always be 0
+      printf("   Longest chains beginning with %s\n", graph->vertexM[findCourse(graph, szPrintname)].szCourseId); // this will always be 0
       memset(pathM, -1, MAX_VERTICES * sizeof(int));
       printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)) + 1);
