@@ -40,21 +40,24 @@ int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
 /***************************** insertPrereq ********************************
 int insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 Purpose:
-    Inserts the Edgenodwith the PreReqVertex and iSuccVertex to the lists of Nodes of each course. 
+    Inserts the Edgenode with the PreReqVertex and iSuccVertex to the lists of Nodes of each course. 
 Parameters:
     I Graph graph         the graph containing info on the vertices
     I int iPrereqVertex   the index of the prereq vertex
     I int iCourseVertex   the index of the course
+Returns:
+    None
 Notes:
     This is used by the PREREQ command.
 ***************************************************************************/
 
 void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
 {
-    EdgeNode *eNew = allocateEdgeNode();    //new node to be inserted
-    EdgeNode *eNew2 = allocateEdgeNode();
+    EdgeNode *eNew = allocateEdgeNode();    //new node to be inserted for prereq
+    EdgeNode *eNew2 = allocateEdgeNode();   //new node to be inserted for successor
     EdgeNode *eCurrent;     //pointer to the current head of the list
     
+    //set the new edgenode's iPrereqVertex and iSuccVertex to the values passed in
     eNew->iPrereqVertex = iPrereqVertex;
     eNew->iSuccVertex = iCourseVertex;
     eNew2->iPrereqVertex = iPrereqVertex;
@@ -63,6 +66,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     //set the courseVertex prereqlist vertex to the ones passed
     if (graph->vertexM[iCourseVertex].prereqList == NULL)// check if prereqList list already had Edges
     {
+        //insert at start of list
         graph->vertexM[iCourseVertex].prereqList = eNew;
         eNew->pNextEdge = NULL;
     }
@@ -79,6 +83,7 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     //set the prereqVertex successorlist vertex to the ones passed
     if (graph->vertexM[iPrereqVertex].successorList == NULL) // check if successor list already had Edges
     {
+        //insert at start of list
         graph->vertexM[iPrereqVertex].successorList = eNew2;
         eNew2->pNextEdge = NULL;
     }
