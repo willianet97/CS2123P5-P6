@@ -163,7 +163,7 @@ void printSources(Graph graph)
   int i;  //local variable used to traverse all vertices
   /*header*/
   printf("\n");
-  printf("%-6s %-20s\n"
+  printf("%-7s %-20s\n"
          ,"Course"
          ,"Name");
   //for loop to traverse all vertices
@@ -172,7 +172,7 @@ void printSources(Graph graph)
     //conditional if the vertex has no prereq print that vertex
     if (graph->vertexM[i].prereqList == NULL)
     {
-      printf("%-6s %-20s\n"
+      printf("%-7s %-20s\n"
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
@@ -193,7 +193,7 @@ void printSinks(Graph graph)
   int i;  //local variable used to traverse all vertices
   /*header*/
   printf("\n");
-  printf("%-6s %-20s\n"
+  printf("%-7s %-20s\n"
          ,"Course"
          ,"Name");
   //for loop to traverse all vertices
@@ -202,7 +202,7 @@ void printSinks(Graph graph)
     //if the vertex has no successor print that vertex
     if (graph->vertexM[i].successorList == NULL)
     {
-      printf("%-6s %-20s\n"
+      printf("%-7s %-20s\n"
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
