@@ -31,6 +31,7 @@ use return of maxchain as iLongLength*/
 /*function needs a lot of work just some rudimentary basics jotted down may even be wrong so far*/
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength)
 {
+  int iCount = 0; //local variable used for printing indents
   if(iVertex < 0) // this condition isn't correct
     return;
   EdgeNode *e;
@@ -47,7 +48,13 @@ void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLon
     {
       for(i = 0; i < iLevel; i++)
       {
+        //prints indents
+        if (iCount % 4 == 0)
+        {
+          printf("          ");
+        }
         printf("%-8s", graph->vertexM[pathM[i]].szCourseId);
+        iCount++;
       }
       printf("%-8s\n", graph->vertexM[pathM[iLevel]].szCourseId);
     }
