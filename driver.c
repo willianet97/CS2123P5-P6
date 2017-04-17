@@ -9,6 +9,9 @@
 int main(int argc, char *argv[])
 {
   int iScanfCnt = 0;
+  //for error checking;
+  int iCourseIndex;
+  //strings
   char szName[50];
   char szCourse[50];
   char szCommand[50];
@@ -16,7 +19,9 @@ int main(int argc, char *argv[])
   char szPrereq[50];
   char szDummy[50];//this takes course and will exist for each sscanf
   char szPrintname[50];
-  int bCycle;
+  char szTBD[50];
+  strcpy(szTBD, "junk");
+  int bCycle;// boolean for causescycle
   int iVertexCnt = 0; //this is incremented after each iteration to store the array subscript
   Graph graph = newGraph();
   
@@ -38,7 +43,8 @@ int main(int argc, char *argv[])
 
       if(iScanfCnt < 3)
         printf("Course input invalid\n");
-
+      if(findCourse(graph, szTBD) > 0)
+          strcpy(graph->vertexM[findCourse(graph, "TBD")].szCourseName, graph->vertexM[iVertexCnt].szCourseName);
       strcpy(szName, graph->vertexM[iVertexCnt].szCourseId);
       strcpy(szCourse, graph->vertexM[iVertexCnt].szCourseName);
 
@@ -48,7 +54,7 @@ int main(int argc, char *argv[])
         iVertexCnt++;
         graph->iNumVertices++;
       }
-      printf("%s %s %s\n"
+      printf(">> %s %s %s\n"
          , szCommand
          , szName
          , szCourse);
@@ -74,16 +80,17 @@ int main(int argc, char *argv[])
         strcpy(graph->vertexM[iVertexCnt].szCourseName, "TBD");
         // allocate edgeNodes for new course
         insertCourse(graph, iVertexCnt);
+        strcpy(szTBD, graph->vertexM[iVertexCnt].szCourseId);
         iVertexCnt++;
         graph->iNumVertices++;
       }
       //takes prereq and course subscripts and inserts them
       bCycle = causesCycle(graph, findCourse(graph, szPrereq), findCourse(graph, szName));
       if (bCycle == TRUE)
-        printf("Prereq insertion causes cycle\n");
+        printf("\tPrereq insertion causes cycle\n");
       else
         insertPrereq(graph, findCourse(graph, szPrereq), findCourse(graph, szName));
-        printf("%s %s\n"
+        printf(">> %s %s\n"
             , szCommand
             , szPrereq);
     }
@@ -96,7 +103,7 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Printone input invalid\n");
       //calls printone function
-      printf("%s %s\n"
+      printf(">> %s %s\n"
          , szCommand
          , szPrintname);
 
@@ -106,7 +113,7 @@ int main(int argc, char *argv[])
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTALL") == 0)
     {
-      printf("%s\n", szCommand);
+      printf(">> %s\n", szCommand);
       printAllInList(graph);
     }
     
@@ -119,14 +126,20 @@ int main(int argc, char *argv[])
         printf("Print successor input invalid\n");
       //calls print successor
       //pretty sure this is for successor
-      printf("%s %s\n"
+      iCourseIndex = findCourse(graph, szPrintname);
+      printf(">> %s %s\n"
          , szCommand
          , szPrintname);
-      printf("%-6s %-20s\n"
+      //if course doesn't exist
+      if(iCourseIndex == -1)
+        printf("Warning: This course doesn't exist!\n");
+      else
+      {
+        printf("%-6s %-20s\n"
             ,graph->vertexM[findCourse(graph, szPrintname)].szCourseId
             ,graph->vertexM[findCourse(graph, szPrintname)].szCourseName);
-
-      printTraversal(graph, findCourse(graph, szPrintname), 1);
+        printTraversal(graph, findCourse(graph, szPrintname), 1);
+      }
     }
     
     else if(strcmp(szCommand, "MAXCHAIN") == 0)
@@ -137,11 +150,19 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Max Chain input invalid\n");
       //calls max chain
-      printf("%s %s\n   Max Chain for %s is %d\n"
-         , szCommand
-         , szPrintname
-         , graph->vertexM[findCourse(graph, szPrintname)].szCourseId
-         , maxChain(graph, findCourse(graph, szPrintname)) + 1);
+      //if course doesn't exist
+      iCourseIndex = findCourse(graph, szPrintname);
+      printf(">> %s %s\n"
+        , szDummy
+        , szPrintname);
+      if(iCourseIndex == -1)
+          printf("Warning: This course doesn't exist!\n");
+      else
+      {
+        printf("\tMaximum chain for %s contains %d courses\n"
+           , graph->vertexM[findCourse(graph, szPrintname)].szCourseId
+           , maxChain(graph, findCourse(graph, szPrintname)) + 1);
+      }
     }
     
     else if(strcmp(szCommand, "PRTLONGS") == 0)
@@ -152,27 +173,33 @@ int main(int argc, char *argv[])
       if(iScanfCnt < 2)
         printf("Print long input invalid");
       //calls print longs
-      printf("%s %s\n"
+      printf(">> %s %s\n"
          , szCommand
          , szPrintname);
-      int pathM[MAX_VERTICES];
-      printf("   Longest chains beginning with %s\n", graph->vertexM[findCourse(graph, szPrintname)].szCourseId); // this will always be 0
-      memset(pathM, -1, MAX_VERTICES * sizeof(int));
-      printLongChains(graph, findCourse(graph, szPrintname), pathM
+      iCourseIndex = findCourse(graph, szPrintname); 
+      if(iCourseIndex == -1)
+          printf("Warning: This course doesn't exist!\n");
+      else
+      {
+        int pathM[MAX_VERTICES];
+        printf("\tLongest chains beginning with %s\n", graph->vertexM[findCourse(graph, szPrintname)].szCourseId); // this will always be 0
+        memset(pathM, -1, MAX_VERTICES * sizeof(int));
+        printLongChains(graph, findCourse(graph, szPrintname), pathM
                       , 0, maxChain(graph, findCourse(graph, szPrintname)) + 1);
+      }
     }
     
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTSINKS") == 0)
     {
-      printf("%s", szCommand);
+      printf(">> %s", szCommand);
       printSinks(graph);
     }
     
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTSOURCES") == 0)
     {
-      printf("%s", szCommand);
+      printf(">> %s", szCommand);
       printSources( graph);
     }
     
@@ -184,7 +211,7 @@ int main(int argc, char *argv[])
       if(iScanfCnt != 1)
         printf("Bad comments input");
 
-      printf("%s\n", szComments);
+      printf(">> %s\n", szComments);
     }
   }
 }
