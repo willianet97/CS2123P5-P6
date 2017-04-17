@@ -5,14 +5,23 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "cs2123p5.h"
-//print
+/****************printAllinList*************************
+Purpose:
+  prints all the vertices of the graph with prereqs and successors
+Parameters:
+  I Graph graph             graph structure
+Returns:
+  none
+Notes:
+
+*******************************************************/
 void printAllInList(Graph graph)
 {
   EdgeNode *e;      //pointer variable used for traversing adjacency list
   int iCount;   //local variable used for printing ...
-  int iCount2;
+  int iCount2;  //local variable used for printing -
   int i;    //local variable used for traversing vertices
-  int j;
+  int j;    //local variable used for iCount conditional
    /*header*/
   printf("%-2s %-2s %-7s %-20s  %-8s\t\t\t        %-22s\n"
          ,"Vx"
@@ -24,10 +33,8 @@ void printAllInList(Graph graph)
   //for loop used to traverse all vertices
   for (i = 0; i < graph->iNumVertices; i++)
   {
-    iCount = 0;
-    iCount2 = 0;
-    //in the terminal the segfault always kicks in here for some reason but I don't see any errors
-    //unless its passed a null graph which it isn't and it works fine in ddd
+    iCount = 0; //initialize
+    iCount2 = 0; //initialize
     //prints the vertex, te, course id, course name
     printf("%2d %2d %-7s %-22s"
          ,i+1
@@ -35,7 +42,6 @@ void printAllInList(Graph graph)
          ,graph->vertexM[i].szCourseId
          ,graph->vertexM[i].szCourseName);
     //for loop used to traverse the prereqs of the specified vertex
-    //may need tweaking or reworking
      for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
      {
        //prints the prereq
@@ -44,6 +50,7 @@ void printAllInList(Graph graph)
        //iterate iCount to see if ... is needed to be printed
        iCount++;
      }
+    //if the count of prereqs is 0 prints a - and iterates the count
     if (iCount == 0)
     {
       printf("%-7s\t", "-");
@@ -66,20 +73,29 @@ void printAllInList(Graph graph)
               ,graph->vertexM[e->iSuccVertex].szCourseId);
        iCount2++;
      }
+    //if count of successors is 0 prints a -
     if (iCount2 == 0)
       printf("-");
     printf("\n");
   }      
 }
-/*********************************/
-/*******requires a findCourse call to pass in iVertex******
-iVertex = findCourse(graph, szCourseId - what was grabbed from sscanf)*********/
+/****************printOne*********************************************
+Purpose:
+  prints one of the specified vertices with prereqs and successors
+Parameters:
+  I Graph graph                 graph structure
+  I int iVertex                 vertex number being passed in to be printed
+Returns:
+  none
+Notes:
+
+********************************************************************/
 void printOne(Graph graph, int iVertex)
 {
   EdgeNode *e;  //local pointer variable used to traverse adjacency list
   int iCount = 0; //local variable used for printing ...
-  int iCount2 = 0;
-  int i;
+  int iCount2 = 0; //local variable used for printing -
+  int i; //local variable used for iCount 
   /*header*/
   printf("%-2s %-2s %-7s %-21s %-8s\t\t\t        %-20s\n"
          ,"Vx"
@@ -95,14 +111,15 @@ void printOne(Graph graph, int iVertex)
          ,graph->vertexM[iVertex].szCourseId
          ,graph->vertexM[iVertex].szCourseName);
   //used to traverse prereqs
-  //may need tweaking or reworking
   for (e = graph->vertexM[iVertex].prereqList; e != NULL; e = e->pNextEdge)
   {
+    //prints prereqs
     printf("%-7s\t"
            ,graph->vertexM[e->iPrereqVertex].szCourseId);
     //increment iCount for each prereq
     iCount++;
   }
+  //if there are no prereqs prints a - and iterates count
   if (iCount == 0)
   {
     printf("%-7s\t", "-");
@@ -117,20 +134,30 @@ void printOne(Graph graph, int iVertex)
     }
   }
   //used to traverse succesor list
-  //may need tweaks or rework
   for (e = graph->vertexM[iVertex].successorList; e != NULL; e = e->pNextEdge)
   {
+    //prints successors
     printf("%s\t"
            ,graph->vertexM[e->iSuccVertex].szCourseId);
     iCount2++;
   }
+  //if no successors prints a -
   if (iCount2 == 0)
   {
     printf("-");
   }
   printf("\n");
 }
-/*********************************/
+/****************printSources**********************************
+Purpose:
+  prints all vertices that have no prereqs
+Parameters:
+  I Graph graph                 the graph structure
+Returns:
+  none
+Notes:
+
+**************************************************************/
 void printSources(Graph graph)
 {
   int i;  //local variable used to traverse all vertices
@@ -151,7 +178,16 @@ void printSources(Graph graph)
     }
   }
 }
-/*********************************/
+/*******************printSinks*******************************
+Purpose:
+  prints all the vertices that have no successors
+Parameters:
+  I Graph graph                   the graph structure
+Returns:
+  none
+Notes:
+
+************************************************************/
 void printSinks(Graph graph)
 {
   int i;  //local variable used to traverse all vertices
@@ -172,9 +208,18 @@ void printSinks(Graph graph)
     }
   }
 }
-/********************************************************************/
-/*this function is an extreme work in progress this is just a basic approach
-may need serious reworking*/
+/*****************printTraversal*******************************
+Purpose:
+  prints the successors of the vertex passed in
+Parameters:
+  I Graph graph                     the graph structure
+  I int iVertex                     the specified vertex to be used
+  I int iIndent                     the number of indentations
+Returns:
+  None
+Notes:
+  this function is recursive
+***************************************************************/
 void printTraversal(Graph graph, int iVertex, int iIndent)
 {
   int i;  //local varible used for indentations
@@ -188,11 +233,11 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
     {
       printf("  ");
     }
+    //prints the vertex course id and name
     printf("%-6s %-20s\n"
            ,graph->vertexM[e->iSuccVertex].szCourseId
            ,graph->vertexM[e->iSuccVertex].szCourseName);
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
-    //p->iSuccVertex may not be right
     printTraversal(graph, e->iSuccVertex,iIndent+1);
   }
 }
