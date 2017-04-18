@@ -1,16 +1,16 @@
 # Define the machine object files for your program
-  2 OBJECTS = driver.o insert.o print.o chain.o
-  3 # Define your include file
-  4 INCLUDES = cs2123p5.h
-  5
-  6 # make for the executable
-  7 p5: ${OBJECTS}
-  8         gcc -g -o p5 ${OBJECTS}
-  9
- 10 # Simple suffix rules for the .o
- 11 %.o: %.c ${INCLUDES}
- 12         gcc -g -c $<
- 13
- 14 # Clean the .o files
- 15 clean:
- 16         rm -f ${OBJECTS}
+OBJECTS = p5driver.o p5chain.o p5print.o p5insert.o
+# Define your include file
+INCLUDES = cs2123p5.h
+
+# make for the executable
+p5: ${OBJECTS}
+	gcc -g -o p5 ${OBJECTS}
+
+# Simple suffix rules for the .o
+%.o: %.c ${INCLUDES}
+	gcc -g -c $<
+
+# Clean the .o files
+clean:
+	rm -f ${OBJECTS}
