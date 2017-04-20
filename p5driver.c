@@ -43,6 +43,13 @@ Input:
     specified course.  There may be many of these.  The chains are ones having a length equal 
     to the length of this course's max chain.
     
+    PLAN szCourseId
+    Inserts this course Id into a plan to be used by doPlan
+    
+    DELETE szCourseId
+    Deletes the course out of the graph and removes it from all vertices predecessorLists and 
+    successorList
+    
     *Comment
     Print the comment (as should be done with the other input commands) and ignore it.
 Returns:
@@ -272,13 +279,18 @@ int main(int argc, char *argv[])
     else if(strcmp(szCommand, "DOPLAN") == 0)
     {
         printf(">> %s", szCommand)
+        Plan plan = newPlan();
+        doPlan(graph, plan)
         //function
     }
       
     else if(strcmp(szCommand, "DELETE") == 0)
     {
-        printf(">> %s", szCommand)
-        //function
+        iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
+         , szPrintname);
+        printf(">> %s", szCommand);
+        deleteCourse(graph, findCourse(graph, szPrintname));
     }
     // shows comments marked with asterisks in output
     else if(strcmp(szCommand, "*") == 0)
