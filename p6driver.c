@@ -3,7 +3,7 @@ p6Driver.c by Travis Woods, Brian Rusnak, William Nester Tamayo, Kyle Astl
 Purpose:
     Use a double adjacency list graph to represent courses and their prerequisites
 Command Parameters:
-    make p5
+    make p6
     p6 < p6Input.txt
 Input:
     COURSE szCourseId szName
@@ -44,11 +44,23 @@ Input:
     to the length of this course's max chain.
     
     PLAN szCourseId
-    Inserts this course Id into a plan to be used by doPlan
+    This course is included in the set of courses we want to show in a semester by 
+    semester plan. If the course doesn't exist, show a warning.
     
-    DELETE szCourseId
-    Deletes the course out of the graph and removes it from all vertices predecessorLists and 
-    successorList
+    DOPLAN
+    This produces and prints the semester by semester plan.
+     
+    DELETE    szCourseId
+    Deletes the course, updates the edge lists appropriately, and frees the edge nodes.   
+    As a result of this command:
+     1. This course will not be associated with any successors. 
+        This also means that any successors will no longer have it as a prerequisite.
+     2. This course will not be associated with any prereqs.
+        This also means that no prereqs will have this course as a successor.
+    
+    PRTHASH
+    Prints the graph in a special format to show the hash table.  
+    This uses printHash, which was provided by Larry.
     
     *Comment
     Print the comment (as should be done with the other input commands) and ignore it.
@@ -65,7 +77,7 @@ Notes:
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "cs2123p5.h"
+#include "cs2123p6.h"
 
 int main(int argc, char *argv[])
 {
