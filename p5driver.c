@@ -1,10 +1,10 @@
 /*********************************************************************************************
-p5Driver.c by Travis Woods, Brian Rusnak, William Nester Tamayo, Kyle Astl
+p6Driver.c by Travis Woods, Brian Rusnak, William Nester Tamayo, Kyle Astl
 Purpose:
     Use a double adjacency list graph to represent courses and their prerequisites
 Command Parameters:
     make p5
-    p5 < p5Input.txt
+    p6 < p6Input.txt
 Input:
     COURSE szCourseId szName
     This is a course to insert. If the course already exists simply replace its szName.
@@ -260,6 +260,26 @@ int main(int argc, char *argv[])
       printSources( graph);
     }
     
+    else if(strcmp(szCommand, "PLAN") == 0)
+    {
+        iScanfCnt = sscanf(szInputBuffer, "%s %s"
+         , szDummy
+         , szPrintname);
+        printf(">> %s", szCommand)
+        //function
+    }
+      
+    else if(strcmp(szCommand, "DOPLAN") == 0)
+    {
+        printf(">> %s", szCommand)
+        //function
+    }
+      
+    else if(strcmp(szCommand, "DELETE") == 0)
+    {
+        printf(">> %s", szCommand)
+        //function
+    }
     // shows comments marked with asterisks in output
     else if(strcmp(szCommand, "*") == 0)
     {
