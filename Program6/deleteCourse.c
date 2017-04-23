@@ -29,6 +29,50 @@ if it is in the overflow area.
 ********************************************************/
 void deleteCourse(Graph graph, int iVertex)
 {
+    int i;
+    int iCount;
+    EdgeNode *e;
+    EdgeNode *eCurrent;
+    EdgeNode *ePrev;
+    for (i = 0; i < graph->iNumVertices; i++)
+    {
+        iCount = 0;
+        for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextedge)
+        {
+            if (e->iPrereqVertex == iVertex && iCount == 0)
+            {
+                e->pNextEdge = eCurrent;
+                graph->vertexM[i].prereqList = eCurrent;
+                free(e);
+            }
+            else if (e->iPrereqVertex == iVertex && iCount > 0)
+            {
+                ePrev->pNextEdge = e->pNextEdge;
+                free (e);
+            }
+            ePrev = e;
+            iCount++;
+         }
+         for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
+         {
+             if (e->iSuccVertex == iVertex && iCount == 0)
+             {
+                e->pNextEdge = eCurrent;
+                graph->vertexM[i].successorList = eCurrent;
+                free(e);
+             }
+             else if (e->iSuccVertex == iVertex && iCount > 0)
+             {
+                ePrev->pNextEdge = e->pNextEdge;
+                free(e);
+             }
+             ePrev = e;
+             iCount++;
+         }
+     }
+     vertexM[iVertex].bExists = FALSE;
+}
+               
   
 
 
