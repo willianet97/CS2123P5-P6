@@ -92,33 +92,34 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
         //set eCurrent next edge to NULL
     }
 }
-/************************** newGraph ********************************
-Graph newGraph()
+
+/************************** newPlan ********************************
+Plan plan()
 Purpose:
-    Creates a new graph.
+    Creates a new plan.
 Parameters:
     n/a
 Returns:
-    The new graph.
+    The new plan.
 Notes:
     n/a
 **************************************************************************/
-Graph newGraph()
+Plan newPlan()
 {
    // allocate memory for graph
-   Graph g = (Graph)malloc(sizeof(GraphImp));
+   Plan plan = (Plan)malloc(sizeof(PlanImp));
    
    // check if memory is available
-   if(g == NULL)
+   if(plan == NULL)
      ErrExit(ERR_ALGORITHM, "No available memory for graph");
   
    // mark the graph as empty
-   g->iNumVertices = 0;
+   plan->iNumVertices = 0;
   
    // initialize the values of the vertex array to -1
-   memset(g->vertexM, -1, MAX_VERTICES);
+   memset(plan->vertexM, -1, MAX_VERTICES);
   
-   return g;
+   return plan;
 }
 /************************** allocateEdgeNode ********************************
 EdgeNode *allocateEdgeNode(int iPrereqVertex, int iSuccVertex)
