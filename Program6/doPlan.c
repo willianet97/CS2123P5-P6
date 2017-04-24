@@ -10,7 +10,15 @@
 *************************************************************************/
 void doPlan(Graph graph, Plan plan)
 {
-  //first do a breadth first traversal I think
   //within the set level function it just returns the level that course
   //goes based on
+  //read bIncludes
+  int i;
+  int iLev = 0;
+  for(i = 0; i < MAX_VERTICES; i++)
+  {
+    if(plan->bIncludes[i] == TRUE)
+      setLevel(graph, plan, i, iLev);
+  }
+  printPlan(graph, plan);
 }
