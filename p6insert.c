@@ -93,6 +93,35 @@ void insertPrereq(Graph graph, int iPrereqVertex, int iCourseVertex)
     }
 }
 
+/************************** newGraph ********************************
+Graph graph()
+Purpose:
+    Creates a new graph.
+Parameters:
+    n/a
+Returns:
+    The new graph.
+Notes:
+    n/a
+**************************************************************************/
+Graph newGraph()
+{
+   // allocate memory for graph
+   Graph g = (Graph)malloc(sizeof(GraphImp));
+   
+   // check if memory is available
+   if(plan == NULL)
+     ErrExit(ERR_ALGORITHM, "No available memory for graph");
+  
+   // mark the graph as empty
+   g->iNumVertices = 0;
+  
+   // initialize the values of the vertex array to -1
+   memset(g->vertexM, -1, MAX_VERTICES);
+  
+   return g;
+}
+
 /************************** newPlan ********************************
 Plan plan()
 Purpose:
@@ -113,11 +142,8 @@ Plan newPlan()
    if(plan == NULL)
      ErrExit(ERR_ALGORITHM, "No available memory for graph");
   
-   // mark the graph as empty
-   plan->iNumVertices = 0;
-  
    // initialize the values of the vertex array to -1
-   memset(plan->vertexM, -1, MAX_VERTICES);
+   memset(plan->bIncludeM, 0, MAX_VERTICES);
   
    return plan;
 }
