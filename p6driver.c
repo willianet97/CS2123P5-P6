@@ -295,8 +295,7 @@ int main(int argc, char *argv[])
       
     else if(strcmp(szCommand, "DOPLAN") == 0)
     {
-        printf(">> %s", szCommand)
-        Plan plan = newPlan();
+        printf(">> %s", szCommand);
         doPlan(graph, plan);
         //function
     }
