@@ -34,6 +34,8 @@ void printAllInList(Graph graph)
   //for loop used to traverse all vertices
   for (i = 0; i < graph->iNumVertices; i++)
   {
+    if (graph->vertexM[i].bExists == TRUE)
+    {
     iCount = 0; //initialize
     iCount2 = 0; //initialize
     //prints the vertex, te, course id, course name
@@ -78,7 +80,8 @@ void printAllInList(Graph graph)
     if (iCount2 == 0)
       printf("-");
     printf("\n");
-  }      
+    }
+  }
 }
 /*************************** printOne ********************************
 void printOne(Graph graph, int iVertex)
@@ -105,6 +108,8 @@ void printOne(Graph graph, int iVertex)
          ,"Prereqs"
          ,"Successors");
   //prints the vertex, te, courseId, courseName
+  if (graph->vertexM[iVertex].bExists == TRUE)
+  {
   printf("%2d %2d %-6s  %-22s"
          ,iVertex+1
          ,0 //te
@@ -147,6 +152,9 @@ void printOne(Graph graph, int iVertex)
     printf("-");
   }
   printf("\n");
+  }
+    else
+        printf("Course has been deleted");
 }
 /**************** printSources **********************************
 void printSources(Graph graph)
@@ -168,6 +176,8 @@ void printSources(Graph graph)
   //for loop to traverse all vertices
   for (i = 0; i < graph->iNumVertices; i++)
   {
+    if (graph->vertexM[i].bExists == TRUE)
+    {
     //conditional if the vertex has no prereq print that vertex
     if (graph->vertexM[i].prereqList == NULL)
     {
@@ -175,6 +185,7 @@ void printSources(Graph graph)
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
+  }
   }
 }
 /******************* printSinks *******************************
@@ -197,6 +208,8 @@ void printSinks(Graph graph)
   //for loop to traverse all vertices
   for (i = 0; i < graph->iNumVertices; i++)
   {
+    if (graph->vertexM[i].bExists == TRUE)
+    {
     //if the vertex has no successor print that vertex
     if (graph->vertexM[i].successorList == NULL)
     {
@@ -204,6 +217,7 @@ void printSinks(Graph graph)
             ,graph->vertexM[i].szCourseId
             ,graph->vertexM[i].szCourseName);
     }
+  }
   }
 }
 /***************** printTraversal *******************************
@@ -222,6 +236,8 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
   int i;  //local varible used for indentations
   EdgeNode *e;  //local pointer variable used to traverse adjacency list
   //for loop used to traverse successor list of specified vertex
+  if (graph->vertexM[i].bExists == TRUE)
+  {
   for (e = graph->vertexM[iVertex].successorList; e != NULL;
     e = e->pNextEdge)
   {
@@ -237,5 +253,8 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
     //recursive call for printTraversals passing the graph the new vertex and the increased indent
     printTraversal(graph, e->iSuccVertex,iIndent+1);
   }
+  }
+  else
+      printf("Course has been deleted");
 }
 
