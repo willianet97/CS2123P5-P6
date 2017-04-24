@@ -37,7 +37,7 @@ void deleteCourse(Graph graph, int iVertex)
     for (i = 0; i < graph->iNumVertices; i++)
     {
         iCount = 0;
-        for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextedge)
+        for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
         {
             if (e->iPrereqVertex == iVertex && iCount == 0)
             {
@@ -48,7 +48,7 @@ void deleteCourse(Graph graph, int iVertex)
             else if (e->iPrereqVertex == iVertex && iCount > 0)
             {
                 ePrev->pNextEdge = e->pNextEdge;
-                free (e);
+                free(e);
             }
             ePrev = e;
             iCount++;
@@ -70,7 +70,7 @@ void deleteCourse(Graph graph, int iVertex)
              iCount++;
          }
      }
-     vertexM[iVertex].bExists = FALSE;
+     graph->vertexM[iVertex].bExists = FALSE;
 }
                
   
