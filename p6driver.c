@@ -97,6 +97,10 @@ int main(int argc, char *argv[])
   int iVertexCnt = 0; /* this is incremented after each iteration 
                          to store the array subscript */
   Graph graph = newGraph();
+    
+  Plan plan = newPlan();
+    
+  //memset all of bIncludeM to FALSE
   
   while(fgets(szInputBuffer, 100, stdin) != NULL)
   {
@@ -284,7 +288,8 @@ int main(int argc, char *argv[])
         iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
          , szPrintname);
-        printf(">> %s", szCommand)
+        printf(">> %s", szCommand);
+        plan->bIncludeM[findCourse(graph, szPrintname)];
         //function
     }
       
@@ -292,7 +297,7 @@ int main(int argc, char *argv[])
     {
         printf(">> %s", szCommand)
         Plan plan = newPlan();
-        doPlan(graph, plan)
+        doPlan(graph, plan);
         //function
     }
       
@@ -422,6 +427,7 @@ void insertCourse(Graph graph, int iVertex)
 {
   graph->vertexM[iVertex].prereqList = NULL;
   graph->vertexM[iVertex].successorList = NULL;
+  graph->vertexM[iVertex].bExists = TRUE;
 }
 /*********************** ErrExit **************************************
 void ErrExit(int iexitRC, char szFmt[], ... )
