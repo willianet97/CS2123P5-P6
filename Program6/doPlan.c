@@ -14,21 +14,25 @@ void doPlan(Graph graph, Plan plan)
   //goes based on
   //read bIncludes
   int i;
+  int j;
   int iLevel = 0;
   for(i = 0; i < MAX_VERTICES; i++)
   {
-    if(plan->bIncludeM[i] == TRUE){
+    if(plan->bIncludeM[i] == TRUE)
+    {
       setLevel(graph, plan, i, 0);
       // need to work on this
-      iLevel = graph->vertexM[iVertex].iSemesterLevel;
-      while (plan->semesterM[iLevel][4] != -1){ // if iLev is full increment it.
-        graph->vertexM[iVertex].iSemesterLevel + 1;
-        iLevel = graph->vertexM[iVertex].iSemesterLevel;
-      }
-      for(i = 0; i < 5; i++) // look for a space in semester array for the current course
+      iLevel = graph->vertexM[i].iSemesterLevel;
+      /*while (plan->semesterM[iLevel][4] != -1){ // if iLev is full increment it.
+        iLevel++;
+      }*/
+      for(j = 0; j < 5; j++) // look for a space in semester array for the current course
       {
-            if(plan->semesterM[iLevel][i] == -1) //found it
-               plan->semesterM[iLevel][i] = iVertex;
+            if(plan->semesterM[iLevel][j] == -1) //found it
+            {
+               plan->semesterM[iLevel][j] = i;
+               break;
+            }
       }
     }
   }
