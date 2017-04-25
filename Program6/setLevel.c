@@ -15,10 +15,8 @@ void setLevel(Graph graph, Plan plan, int iVertex, int iLev)
     for(e = graph->vertexM[iVertex].prereqList; e != NULL;
        e = e->pNextEdge)
     {
-        if(!(findPrereq(plan, iLev, e->iPrereqVertex)))
-            iMaxLevel = vertexM[e->iPrereqVertex].iSemesterLevel + 1; 
-            if (iMaxLevel > iLev) // check if vertexM[e->iPrereqVertex].iSemesterLevel + 1 of last Prereq is lower than this Prereq iSemesterLever
-            iLev = iMaxLevel;
+        if((findPrereq(plan, iLev, e->iPrereqVertex)))
+            iLevel = vertexM[e->iPrereqVertex].iSemesterLevel + 1; 
     }
     graph->vertexM[iVertex].iSemesterLevel = iLev;
     printf("Semester level is %d and vertex index is %d", iLev, iVertex);
