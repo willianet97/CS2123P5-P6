@@ -37,6 +37,12 @@ void printAllInList(Graph graph)
     iCount = 0; //initialize
     iCount2 = 0; //initialize
     //prints the vertex, te, course id, course name
+    if (graph->vertexM[i].bExists == FALSE)
+    {
+        continue;
+    }
+    else
+    {
     printf("%2d %2d %-7s %-22s"
          ,i+1
          ,0 //te
@@ -78,7 +84,8 @@ void printAllInList(Graph graph)
     if (iCount2 == 0)
       printf("-");
     printf("\n");
-  }      
+  }
+  }
 }
 /*************************** printOne ********************************
 void printOne(Graph graph, int iVertex)
@@ -169,7 +176,7 @@ void printSources(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //conditional if the vertex has no prereq print that vertex
-    if (graph->vertexM[i].prereqList == NULL)
+    if (graph->vertexM[i].prereqList == NULL && graph->vertexM[i].bExists == TRUE)
     {
       printf("%-7s %-20s\n"
             ,graph->vertexM[i].szCourseId
@@ -198,7 +205,7 @@ void printSinks(Graph graph)
   for (i = 0; i < graph->iNumVertices; i++)
   {
     //if the vertex has no successor print that vertex
-    if (graph->vertexM[i].successorList == NULL)
+    if (graph->vertexM[i].successorList == NULL && graph->vertexM[i].bExists == TRUE)
     {
       printf("%-7s %-20s\n"
             ,graph->vertexM[i].szCourseId
