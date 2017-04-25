@@ -22,5 +22,5 @@ void doPlan(Graph graph, Plan plan)
       plan->semesterM[iLev][i]; // insert Vertex to Semester array in corresponding iLevel, which was returned by setLevel;
     }
   }
-  printPlan(graph, plan);//this needs to be added to the print.c file
+  //printPlan(graph, plan);//this needs to be added to the print.c file
 }
