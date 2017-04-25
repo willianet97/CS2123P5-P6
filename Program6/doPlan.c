@@ -21,7 +21,7 @@ void doPlan(Graph graph, Plan plan)
       setLevel(graph, plan, i, 0);
       // need to work on this
       iLevel = graph->vertexM[iVertex].iSemesterLevel;
-      while (plan->semesterM[iLevel][5] != -1){ // if iLev is full increment it.
+      while (plan->semesterM[iLevel][4] != -1){ // if iLev is full increment it.
         iLevel = graph->vertexM[iVertex].iSemesterLevel + 1;      
       }
         for(i = 0; i < 5; i++) // loof for a space in semester array for the current course
