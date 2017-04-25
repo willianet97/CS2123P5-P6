@@ -25,11 +25,11 @@ void doPlan(Graph graph, Plan plan)
         graph->vertexM[iVertex].iSemesterLevel + 1;
         iLevel = graph->vertexM[iVertex].iSemesterLevel;
       }
-        for(i = 0; i < 5; i++) // loof for a space in semester array for the current course
-        {
+      for(i = 0; i < 5; i++) // look for a space in semester array for the current course
+      {
             if(plan->semesterM[iLevel][i] == -1) //found it
                plan->semesterM[iLevel][i] = iVertex;
-        }
+      }
     }
   }
   //printPlan(graph, plan);//this needs to be added to the print.c file
