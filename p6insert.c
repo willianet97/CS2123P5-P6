@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "cs2123p5.h"
+#include "cs2123p6.h"
 
 /***************************** causesCycle ********************************
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex)
@@ -110,7 +110,7 @@ Graph newGraph()
    Graph g = (Graph)malloc(sizeof(GraphImp));
    
    // check if memory is available
-   if(plan == NULL)
+   if(g == NULL)
      ErrExit(ERR_ALGORITHM, "No available memory for graph");
   
    // mark the graph as empty

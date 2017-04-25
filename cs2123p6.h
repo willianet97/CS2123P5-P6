@@ -109,8 +109,9 @@ void printSources(Graph graph);
 void printSinks(Graph graph);
 
 Graph newGraph();
+EdgeNode * allocateEdgeNode();
 
-int insertCourse(Graph graph, char szCourseId[]);
+void insertCourse(Graph graph, int iVertex);
 // Program 6 function for delete
 void deleteCourse (Graph graph, int iVertex);
 
