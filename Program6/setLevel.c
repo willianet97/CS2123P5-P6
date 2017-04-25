@@ -22,7 +22,7 @@ void setLevel(Graph graph, Plan plan, int iVertex, int iLev)
     }
     for(i = 0; i < 5; i++)
     {
-        if(plan->semeserM[iLev][i] == -1)
+        if(plan->semesterM[iLev][i] == -1)
         {
             plan->semesterM[iLev][i] = iVertex;//assign semester level
             break;

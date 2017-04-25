@@ -17,10 +17,10 @@ void doPlan(Graph graph, Plan plan)
   int iLev = 0;
   for(i = 0; i < MAX_VERTICES; i++)
   {
-    if(plan->bIncludes[i] == TRUE){
+    if(plan->bIncludeM[i] == TRUE){
       setLevel(graph, plan, i, iLev);
       plan->semesterM[iLev][i]; // insert Vertex to Semester array in corresponding iLevel, which was returned by setLevel;
     }
   }
-  printPlan(graph, plan);
+  printPlan(graph, plan);//this needs to be added to the print.c file
 }

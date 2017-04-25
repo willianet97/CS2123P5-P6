@@ -72,13 +72,3 @@ void deleteCourse(Graph graph, int iVertex)
      }
      graph->vertexM[iVertex].bExists = FALSE;
 }
-               
-  
-
-
-
-
-
-
-
-}
