@@ -52,6 +52,7 @@ void deleteCourse(Graph graph, int iVertex)
                     free(e);
                 }
             ePrev = e;
+            }
          }
          for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
          {
@@ -71,5 +72,6 @@ void deleteCourse(Graph graph, int iVertex)
              ePrev2 = e;
          }
      }
+    }
      graph->vertexM[iVertex].bExists = FALSE;
 }
