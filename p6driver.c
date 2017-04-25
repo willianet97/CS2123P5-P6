@@ -187,7 +187,10 @@ int main(int argc, char *argv[])
          , szCommand
          , szPrintname);
 
-      printOne(graph, findCourse(graph, szPrintname));
+      if(graph->vertexM[findCourse(graph, szPrintname)].bExists == TRUE)
+          printOne(graph, findCourse(graph, szPrintname));
+      else
+          printf("This course has been deleted");
      }
     
     //just calls print function, no scanf required
@@ -218,7 +221,10 @@ int main(int argc, char *argv[])
         printf("%-6s %-20s\n"
             ,graph->vertexM[iCourseIndex].szCourseId
             ,graph->vertexM[iCourseIndex].szCourseName);
-        printTraversal(graph, iCourseIndex, 1);
+        if(graph->vertexM[iCourseIndex].bExists == TRUE)
+            printTraversal(graph, iCourseIndex, 1);
+        else
+            printf("This course has been deleted");
       }
     }
     
@@ -279,7 +285,7 @@ int main(int argc, char *argv[])
     //just calls print function, no scanf required
     else if(strcmp(szCommand, "PRTSOURCES") == 0)
     {
-      printf(">> %s", szCommand);
+      printf(">> %s\n", szCommand);
       printSources( graph);
     }
     
@@ -288,14 +294,14 @@ int main(int argc, char *argv[])
         iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
          , szPrintname);
-        printf(">> %s", szCommand);
+        printf(">> %s %s\n", szCommand, szPrintname);
         plan->bIncludeM[findCourse(graph, szPrintname)];
         //function
     }
       
     else if(strcmp(szCommand, "DOPLAN") == 0)
     {
-        printf(">> %s", szCommand);
+        printf(">> %s\n", szCommand);
         doPlan(graph, plan);
         //function
     }
@@ -305,7 +311,7 @@ int main(int argc, char *argv[])
         iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
          , szPrintname);
-        printf(">> %s", szCommand);
+        printf(">> %s\n", szCommand);
         deleteCourse(graph, findCourse(graph, szPrintname));
     }
     // shows comments marked with asterisks in output

@@ -107,6 +107,7 @@ void printAllInList(Graph graph);
 void printOne(Graph graph, int iVertex);
 void printSources(Graph graph);
 void printSinks(Graph graph);
+int findPrereq(Plan plan, int iLev, int iPrereqVertex);
 
 Graph newGraph();
 EdgeNode * allocateEdgeNode();
