@@ -30,44 +30,44 @@ if it is in the overflow area.
 void deleteCourse(Graph graph, int iVertex)
 {
     int i;
-    int iCount;
     EdgeNode *e;
     EdgeNode *eCurrent;
-    EdgeNode *ePrev;
+    EdgeNode *ePrev = NULL;
+    EdgeNode *ePrev2 = NULL;
     for (i = 0; i < graph->iNumVertices; i++)
     {
-        iCount = 0;
         for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
         {
-            if (e->iPrereqVertex == iVertex && iCount == 0)
+            if (e->iPrereqVertex == iVertex)
             {
-                e->pNextEdge = eCurrent;
-                graph->vertexM[i].prereqList = eCurrent;
-                free(e);
-            }
-            else if (e->iPrereqVertex == iVertex && iCount > 0)
-            {
-                ePrev->pNextEdge = e->pNextEdge;
-                free(e);
-            }
+                if (ePrev == NULL)
+                {
+                    e->pNextEdge = eCurrent;
+                    graph->vertexM[i].prereqList = eCurrent;
+                    free(e);
+                }
+                else
+                {
+                    ePrev->pNextEdge = e->pNextEdge;
+                    free(e);
+                }
             ePrev = e;
-            iCount++;
          }
          for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
          {
-             if (e->iSuccVertex == iVertex && iCount == 0)
+             if (e->iSuccVertex == iVertex)
              {
+                 if (ePrev2 == NULL)
                 e->pNextEdge = eCurrent;
                 graph->vertexM[i].successorList = eCurrent;
                 free(e);
              }
-             else if (e->iSuccVertex == iVertex && iCount > 0)
+             else
              {
-                ePrev->pNextEdge = e->pNextEdge;
+                ePrev2->pNextEdge = e->pNextEdge;
                 free(e);
              }
-             ePrev = e;
-             iCount++;
+             ePrev2 = e;
          }
      }
      graph->vertexM[iVertex].bExists = FALSE;
