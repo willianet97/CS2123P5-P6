@@ -16,7 +16,9 @@ void setLevel(Graph graph, Plan plan, int iVertex, int iLev)
        e = e->pNextEdge)
     {
         if(!(findPrereq(plan, iLev, e->iPrereqVertex)))
-            iLev = vertexM[e->iPrereqVertex].iSemesterLevel + 1;
+            iMaxLevel = vertexM[e->iPrereqVertex].iSemesterLevel + 1; 
+            if (iMaxLevel > iLev) // check if vertexM[e->iPrereqVertex].iSemesterLevel + 1 of last Prereq is lower than this Prereq iSemesterLever
+            iLev = iMaxLevel;
     }
     /*if (plan->semesterM[iLev][5] != -1)
         iLev++;
