@@ -308,11 +308,16 @@ int main(int argc, char *argv[])
       
     else if(strcmp(szCommand, "DELETE") == 0)
     {
+        int iexists;
         iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
          , szPrintname);
         printf(">> %s\n", szCommand);
-        deleteCourse(graph, findCourse(graph, szPrintname));
+        iexists = findCourse(graph, szPrintname);
+        if (graph->vertexM[iexists].bExists == TRUE)
+            deleteCourse(graph, findCourse(graph, szPrintname));
+        else
+            printf("course does not exist");
     }
     // shows comments marked with asterisks in output
     else if(strcmp(szCommand, "*") == 0)
