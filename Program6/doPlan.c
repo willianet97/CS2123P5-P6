@@ -18,8 +18,17 @@ void doPlan(Graph graph, Plan plan)
   for(i = 0; i < MAX_VERTICES; i++)
   {
     if(plan->bIncludeM[i] == TRUE){
-      setLevel(graph, plan, i, iLev);
-      plan->semesterM[iLev][i]; // insert Vertex to Semester array in corresponding iLevel, which was returned by setLevel;
+      setLevel(graph, plan, i, &iLev);
+      // need to work on this
+      while (plan->semesterM[iLev][5] != -1){ // if iLev is full increment it.
+        iLev++;      
+      }
+        for(i = 0; i < 5; i++) // loof for a space in semester array for the current course
+        {
+            if(plan->semesterM[iLev][i] == -1) //found it
+                plan->semesterM[iLev][i] = iVertex;
+        }
+     iLev = 0; // set iLev to 0 to pass it to setLev as 0
     }
   }
   //printPlan(graph, plan);//this needs to be added to the print.c file
