@@ -135,6 +135,8 @@ Notes:
 **************************************************************************/
 Plan newPlan()
 {
+    int i;
+    int j;
    // allocate memory for graph
    Plan plan = (Plan)malloc(sizeof(PlanImp));
    
@@ -143,8 +145,12 @@ Plan newPlan()
      ErrExit(ERR_ALGORITHM, "No available memory for graph");
   
    // initialize the values of the vertex array to -1
-   memset(plan->bIncludeM, 0, MAX_VERTICES);
-  
+   memset(plan->bIncludeM, 0, MAX_VERTICES*sizeof(int));
+   for(i = 0; i < 5; i++)
+   {
+       for(j = 0; j < MAX_VERTICES; j++)
+           plan->semesterM[i][j] = -1;
+   }
    return plan;
 }
 /************************** allocateEdgeNode ********************************

@@ -295,7 +295,7 @@ int main(int argc, char *argv[])
          , szDummy
          , szPrintname);
         printf(">> %s %s\n", szCommand, szPrintname);
-        plan->bIncludeM[findCourse(graph, szPrintname)];
+        plan->bIncludeM[findCourse(graph, szPrintname)] = TRUE;
         //function
     }
       
