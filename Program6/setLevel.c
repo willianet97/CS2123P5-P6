@@ -12,11 +12,16 @@ void setLevel(Graph graph, Plan plan, int iVertex, int iLev)
     //this function does not traverse. All it does is assign a specific semester
     //to a course
     EdgeNode *e;
+    // int iPrereqLev = 0;
     for(e = graph->vertexM[iVertex].prereqList; e != NULL;
        e = e->pNextEdge)
     {
-        if((findPrereq(plan, iLev, e->iPrereqVertex)))
+        if((!findPrereq(plan, iLev, e->iPrereqVertex)))
             iLevel = vertexM[e->iPrereqVertex].iSemesterLevel + 1; 
+        
+      //iPrereqLev = graph->vertexM[e->iPrereqVertex].iSemesterLevel;
+      //if(iPrereqLev >= iLevel) 
+      //   iLevel = iPrereqLev + 1; 
     }
     graph->vertexM[iVertex].iSemesterLevel = iLev;
     printf("Semester level is %d and vertex index is %d", iLev, iVertex);
