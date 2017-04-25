@@ -22,12 +22,13 @@ void doPlan(Graph graph, Plan plan)
       // need to work on this
       iLevel = graph->vertexM[iVertex].iSemesterLevel;
       while (plan->semesterM[iLevel][4] != -1){ // if iLev is full increment it.
-        iLevel = graph->vertexM[iVertex].iSemesterLevel + 1;      
+        graph->vertexM[iVertex].iSemesterLevel + 1;
+        iLevel = graph->vertexM[iVertex].iSemesterLevel;
       }
         for(i = 0; i < 5; i++) // loof for a space in semester array for the current course
         {
             if(plan->semesterM[iLevel][i] == -1) //found it
-                plan->semesterM[iLevel][i] = iVertex;
+               plan->semesterM[iLevel][i] = iVertex;
         }
     }
   }
