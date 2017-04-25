@@ -58,10 +58,11 @@ void deleteCourse(Graph graph, int iVertex)
              if (e->iSuccVertex == iVertex)
              {
                  if (ePrev2 == NULL)
-                e->pNextEdge = eCurrent;
-                graph->vertexM[i].successorList = eCurrent;
-                free(e);
-             }
+                 {
+                    e->pNextEdge = eCurrent;
+                    graph->vertexM[i].successorList = eCurrent;
+                    free(e);
+                 }
              else
              {
                 ePrev2->pNextEdge = e->pNextEdge;
