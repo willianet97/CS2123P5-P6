@@ -99,6 +99,7 @@ int maxChain(Graph graph, int iVertex);
 void printTraversal(Graph graph, int iCourseVertex, int indent);
 void printLongChains(Graph graph, int iVertex, int pathM[], int iLevel, int iLongLength);
 int causesCycle(Graph graph, int iPrereqVertex, int iVertex);
+int DistSource(Graph graph, int iVertex);
 
 // Non-recursive for program 5
 int findCourse(Graph graph, char szCourseId[]);
