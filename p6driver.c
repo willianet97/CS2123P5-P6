@@ -190,7 +190,7 @@ int main(int argc, char *argv[])
       if(graph->vertexM[findCourse(graph, szPrintname)].bExists == TRUE)
           printOne(graph, findCourse(graph, szPrintname));
       else
-          printf("This course has been deleted");
+          printf("This course has been deleted\n");
      }
     
     //just calls print function, no scanf required
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
         if(graph->vertexM[iCourseIndex].bExists == TRUE)
             printTraversal(graph, iCourseIndex, 1);
         else
-            printf("This course has been deleted");
+            printf("This course has been deleted\n");
       }
     }
     
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
          , szDummy
          , szPrintname);
       if(iScanfCnt < 2)
-        printf("Print long input invalid");
+        printf("Print long input invalid\n");
       //calls print longs
       printf(">> %s %s\n"
          , szCommand
@@ -308,16 +308,15 @@ int main(int argc, char *argv[])
       
     else if(strcmp(szCommand, "DELETE") == 0)
     {
-        int iexists;
         iScanfCnt = sscanf(szInputBuffer, "%s %s"
          , szDummy
          , szPrintname);
-        printf(">> %s\n", szCommand);
-        iexists = findCourse(graph, szPrintname);
-        if (graph->vertexM[iexists].bExists == TRUE)
+        printf(">> %s %s\n", szCommand, szPrintname);
+        iCourseIndex = findCourse(graph, szPrintname);
+        if (graph->vertexM[iCourseIndex].bExists == TRUE)
             deleteCourse(graph, findCourse(graph, szPrintname));
         else
-            printf("course does not exist");
+            printf("This course does not exist\n");
     }
     // shows comments marked with asterisks in output
     else if(strcmp(szCommand, "*") == 0)
@@ -325,7 +324,7 @@ int main(int argc, char *argv[])
       char szComments[50];
       iScanfCnt = sscanf(szInputBuffer, "%[^\n]", szComments);
       if(iScanfCnt != 1)
-        printf("Bad comments input");
+        printf("Bad comments input\n");
 
       printf(">> %s\n", szComments);
     }
