@@ -248,5 +248,22 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
 
 void printPlan(Graph graph, Plan plan)
 {
+    int i;
+    int j;
+    for (i = 0; i < 5; i++)
+    {
+        j = 0;
+        printf("%s %d"
+               ,"Semester"
+               ,i);
+        while(plan->semesterM[i][MAX_VERTICES] != NULL)
+        {
+            printf("%s %s"
+                   ,graph->vertexM[j].szCourseId
+                   ,graph->vertexM[j].szCourseName);
+            j++;
+        }
+    }
+            
 
 }
