@@ -88,7 +88,7 @@ int DistSource(Graph graph, int iVertex)
      e = e->pNextEdge)
   {
     //within successor lists it takes each path
-    iCount = 1 + maxChain(graph, e->iPrereqVertex);
+    iCount = 1 + DistSource(graph, e->iPrereqVertex);
     if(iCount > iFirst)
         iFirst = iCount;
   }
