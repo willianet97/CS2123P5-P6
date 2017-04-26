@@ -16,6 +16,7 @@ void doPlan(Graph graph, Plan plan)
   int i;
   int j;
   int iLevel = 0;
+  int isFullM[5];
   for(i = 0; i < MAX_VERTICES; i++)
   {
     if(plan->bIncludeM[i] == TRUE)
@@ -23,9 +24,10 @@ void doPlan(Graph graph, Plan plan)
       setLevel(graph, plan, i, 0);
       // need to work on this
       iLevel = graph->vertexM[i].iSemesterLevel;
-      /*while (plan->semesterM[iLevel][4] != -1){ // if iLev is full increment it.
+      if(isFullM[iLevel] == TRUE) // if iLev is full increment it.
+      {
         iLevel++;
-      }*/
+      }
       for(j = 0; j < 5; j++) // look for a space in semester array for the current course
       {
             if(plan->semesterM[iLevel][j] == -1) //found it
@@ -33,7 +35,11 @@ void doPlan(Graph graph, Plan plan)
                plan->semesterM[iLevel][j] = i;
                break;
             }
+            if(j == 4 && plan->semesterM[iLevel][j] != -1)
+                isFullM[iLevel] = TRUE;
       }
+      //if(plan->semesterM[iLevel])
+          //plan->semesterM[iLevel + 1][0] = i;
     }
   }
   printPlan(graph, plan);
