@@ -36,5 +36,5 @@ void doPlan(Graph graph, Plan plan)
       }
     }
   }
-  //printPlan(graph, plan);//this needs to be added to the print.c file
+  printPlan(graph, plan);
 }
