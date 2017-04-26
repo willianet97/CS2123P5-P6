@@ -246,3 +246,7 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
   }
 }
 
+void printPlan(Graph graph, Plan plan)
+{
+
+}
