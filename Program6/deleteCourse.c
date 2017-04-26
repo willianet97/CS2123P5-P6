@@ -43,14 +43,13 @@ void deleteCourse(Graph graph, int iVertex)
                 {
                     e->pNextEdge = NULL;
                     graph->vertexM[i].prereqList = NULL;
-                    free(e);
                 }
                 else
                 {
                     ePrev->pNextEdge = e->pNextEdge;
-                    free(e);
                 }
             ePrev = e;
+            free(e);
             }
          }
          for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
@@ -61,14 +60,13 @@ void deleteCourse(Graph graph, int iVertex)
                  {
                     e->pNextEdge = NULL;
                     graph->vertexM[i].successorList = NULL;
-                    free(e);
                  }
              else
              {
                 ePrev2->pNextEdge = e->pNextEdge;
-                free(e);
              }
              ePrev2 = e;
+             free(e);
          }
      }
     }
