@@ -31,7 +31,6 @@ void deleteCourse(Graph graph, int iVertex)
 {
     int i;
     EdgeNode *e;
-    EdgeNode *eCurrent;
     EdgeNode *ePrev = NULL;
     EdgeNode *ePrev2 = NULL;
     for (i = 0; i < graph->iNumVertices; i++)
@@ -42,8 +41,8 @@ void deleteCourse(Graph graph, int iVertex)
             {
                 if (ePrev == NULL)
                 {
-                    e->pNextEdge = eCurrent;
-                    graph->vertexM[i].prereqList = eCurrent;
+                    e->pNextEdge = NULL;
+                    graph->vertexM[i].prereqList = NULL;
                     free(e);
                 }
                 else
@@ -60,8 +59,8 @@ void deleteCourse(Graph graph, int iVertex)
              {
                  if (ePrev2 == NULL)
                  {
-                    e->pNextEdge = eCurrent;
-                    graph->vertexM[i].successorList = eCurrent;
+                    e->pNextEdge = NULL;
+                    graph->vertexM[i].successorList = NULL;
                     free(e);
                  }
              else
