@@ -277,8 +277,8 @@ void printPlan(Graph graph, Plan plan)
         while(plan->semesterM[i][j] != -1)
         {
             printf("       %s %s\n"
-                   ,graph->vertexM[semester[i][j]].szCourseId
-                   ,graph->vertexM[semester[i][j]].szCourseName);
+                   ,graph->vertexM[plan->semester[i][j]].szCourseId
+                   ,graph->vertexM[plan->semester[i][j]].szCourseName);
             j++;
         }
     }
