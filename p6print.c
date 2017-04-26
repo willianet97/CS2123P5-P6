@@ -253,12 +253,12 @@ void printPlan(Graph graph, Plan plan)
     for (i = 0; i < 5; i++)
     {
         j = 0;
-        printf("%s %d"
+        printf("%s %d\n"
                ,"Semester"
                ,i);
         while(plan->semesterM[i][MAX_VERTICES] != NULL)
         {
-            printf("%s %s"
+            printf("%s %s\n"
                    ,graph->vertexM[j].szCourseId
                    ,graph->vertexM[j].szCourseName);
             j++;
