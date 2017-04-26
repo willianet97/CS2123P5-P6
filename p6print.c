@@ -245,25 +245,41 @@ void printTraversal(Graph graph, int iVertex, int iIndent)
     printTraversal(graph, e->iSuccVertex,iIndent+1);
   }
 }
-
+/********************** printPlan ***************************
+void printPlan(Graph graph, Plan plan)
+Purpose:
+    Prints out the current semester by semester plan.
+Parameters:
+    I Graph graph     graph with course info
+    I Plan plan       plan with semester info
+Notes:
+    n/a
+************************************************************/
 void printPlan(Graph graph, Plan plan)
 {
     int i;
     int j;
-    for (i = 0; i < 5; i++)
+    
+    // header
+    printf("Semester Plan\n");
+    
+    // print semester plan
+    for (i = 0; i < ; i++)
     {
         j = 0;
-        printf("%s %d\n"
+        
+        // print semester number
+        printf("%s #%d\n"
                ,"Semester"
-               ,i);
-        while(plan->semesterM[i][j] != NULL)
+               ,i+1);
+        
+        // print semester course info
+        while(plan->semesterM[i][j] != -1)
         {
-            printf("%s %s\n"
-                   ,graph->vertexM[j].szCourseId
-                   ,graph->vertexM[j].szCourseName);
+            printf("       %s %s\n"
+                   ,graph->vertexM[semester[i][j]].szCourseId
+                   ,graph->vertexM[semester[i][j]].szCourseName);
             j++;
         }
     }
-            
-
 }
