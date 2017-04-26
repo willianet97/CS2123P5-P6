@@ -77,3 +77,20 @@ void printLongChains(Graph graph, int iVertex, int pathM[],
       printf("%-8s\n", graph->vertexM[pathM[iLevel]].szCourseId);
     }
 }
+int DistSource(Graph graph, int iVertex)
+{
+  EdgeNode *e;
+  int iCount = 0;
+  int iFirst = 0;
+  // traverse to the adjacent vertices
+  //goes through successor lists
+  for (e = graph->vertexM[iVertex].prereqList; e != NULL; 
+     e = e->pNextEdge)
+  {
+    //within successor lists it takes each path
+    iCount = 1 + maxChain(graph, e->iPrereqVertex);
+    if(iCount > iFirst)
+        iFirst = iCount;
+  }
+  return iFirst;
+}
