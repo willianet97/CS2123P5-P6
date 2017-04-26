@@ -6,6 +6,18 @@
 #include <stdlib.h>
 #include "cs2123p6.h"
 /*************************** setLevel *****************************************
+void setLevel(Graph graph, Plan plan, int iVertex, int iLevel)
+Purpose:
+    Sets the vertex's semester level based on where that course should be taken 
+    earliest.  
+Parameters:
+    I Graph graph     graph with course info
+    I Plan plan       plan for semester info
+    I int iVertex     the index of the vertex to set level for
+    I int iLevel      numeric level of the semester
+Notes:
+    Prior to setting this value and prior to calling setLevel, 
+    you probably want to determine the distance from the source for this vertex.
 ******************************************************************************/
 void setLevel(Graph graph, Plan plan, int iVertex, int iLevel)
 {
@@ -22,5 +34,9 @@ void setLevel(Graph graph, Plan plan, int iVertex, int iLevel)
          iLevel = iPrereqLev + 1; 
     }
     graph->vertexM[iVertex].iSemesterLevel = iLevel;
-    printf("Semester level is %d and vertex index is %d\n", iLevel, iVertex);
+    
+    // error checking
+    printf("Semester #%d | Vertex Index = %d | %s  %s\n", iLevel+1, iVertex
+            , graph->vertexM[iVertex].szCourseId
+            , graph->vertexM[iVertex].szCourseName);
 }
