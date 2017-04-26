@@ -45,7 +45,7 @@ void printAllInList(Graph graph)
     {
     printf("%2d %2d %-7s %-22s"
          ,i+1
-         ,0 //te
+         ,DistSource(graph, i) //te
          ,graph->vertexM[i].szCourseId
          ,graph->vertexM[i].szCourseName);
     //for loop used to traverse the prereqs of the specified vertex
@@ -114,7 +114,7 @@ void printOne(Graph graph, int iVertex)
   //prints the vertex, te, courseId, courseName
   printf("%2d %2d %-6s  %-22s"
          ,iVertex+1
-         ,0 //te
+         ,DistSource(graph, iVertex) //te
          ,graph->vertexM[iVertex].szCourseId
          ,graph->vertexM[iVertex].szCourseName);
   //used to traverse prereqs
