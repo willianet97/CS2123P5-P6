@@ -77,20 +77,32 @@ void printLongChains(Graph graph, int iVertex, int pathM[],
       printf("%-8s\n", graph->vertexM[pathM[iLevel]].szCourseId);
     }
 }
+/************************DistSource**********************************
+Purpose:
+    determines the max distance of the specified vertex from the source
+Parameters:
+    I Graph graph                               graph structure
+    I int iVertex                               specified vertex
+Returns:
+    returns the max distance from the source
+Notes:
+
+********************************************************************/
 int DistSource(Graph graph, int iVertex)
 {
-  EdgeNode *e;
-  int iCount = 0;
-  int iFirst = 0;
+  EdgeNode *e;  //local pointer variable used to traverse
+  int iCount = 0;   //local counter variable
+  int iFirst = 0;   //local counter variable
   // traverse to the adjacent vertices
-  //goes through successor lists
+  //goes through prereq lists
   for (e = graph->vertexM[iVertex].prereqList; e != NULL; 
      e = e->pNextEdge)
   {
-    //within successor lists it takes each path
+    //within prerews lists it takes each path
     iCount = 1 + DistSource(graph, e->iPrereqVertex);
     if(iCount > iFirst)
         iFirst = iCount;
   }
+    //returns max distance
   return iFirst;
 }
