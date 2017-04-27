@@ -35,39 +35,40 @@ void deleteCourse(Graph graph, int iVertex)
     EdgeNode *ePrev2 = NULL;
     for (i = 0; i < graph->iNumVertices; i++)
     {
-        for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)
+        for (e = graph->vertexM[i].prereqList; e != NULL; e = e->pNextEdge)//the segfault is caused somewhere in here
         {
             if (e->iPrereqVertex == iVertex)
             {
-                if (ePrev == NULL)
+                if (ePrev == NULL)//if it is at the head of the list
                 {
-                    ePrev = e->pNextEdge;
+                    graph->vertexM[i].prereqList = e->pNextEdge;
                 }
-                else
+                else//if it is in the middle
                 {
-                    ePrev->pNextEdge = e->pNextEdge;
+                    ePrev->pNextEdge = e->pNextEdge;//i think this is the issue because its trying to read something null
                 }
-            ePrev = e;
-            free(e);
+                free(e);
             }
+            else
+                ePrev = e;
          }
-         for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)
+         for (e = graph->vertexM[i].successorList; e != NULL; e = e->pNextEdge)//this works beautifully
          {
              if (e->iSuccVertex == iVertex)
              {
                  if (ePrev2 == NULL)
                  {
-                    e->pNextEdge = NULL;
-                    graph->vertexM[i].successorList = NULL;
+                    graph->vertexM[i].successorList = e->pNextEdge;
                  }
-             else
-             {
-                ePrev2->pNextEdge = e->pNextEdge;
+                 else
+                 {
+                    ePrev2->pNextEdge = e->pNextEdge;
+                 }
+                 free(e);
              }
-             ePrev2 = e;
-             free(e);
-         }
-     }
+             else
+                ePrev2 = e;
+        }
     }
      graph->vertexM[iVertex].bExists = FALSE;
 }
