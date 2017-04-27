@@ -122,18 +122,22 @@ int main(int argc, char *argv[])
         printf("Course input invalid\n");
 
       // check if TBD and change name if so
-      if(strcmp(graph->vertexM[iVertexCnt].szCourseId, szTBD) == 0)
-          strcpy(graph->vertexM[findCourse(graph, szTBD)].szCourseName, graph->vertexM[iVertexCnt].szCourseName);
       
       strcpy(szName, graph->vertexM[iVertexCnt].szCourseId);
       strcpy(szCourse, graph->vertexM[iVertexCnt].szCourseName);
 
+      int blah = findCourse(graph, graph->vertexM[iVertexCnt].szCourseId);
       if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) < 0)// if the course already exists it doesn't create an entire new one
       {
-        insertCourse(graph, iVertexCnt); 
+        insertCourse(graph, iVertexCnt);   
         iVertexCnt++;
         graph->iNumVertices++;
       }
+      else
+          strcpy(graph->vertexM[blah].szCourseName, szCourse);
+     // else if(findCourse(graph, graph->vertexM[iVertexCnt].szCourseId) > -1 && strcmp(graph->vertexM[iVertexCnt].szCourseId, graph->vertexM[findCourse(graph, graph->vertexM[iVertexCnt].szCourseId)].szCourseId) != 0)
+         // strcpy(graph->vertexM[findCourse(graph, szTBD)].szCourseName, graph->vertexM[iVertexCnt].szCourseName);
+      
       printf(">> %s %s %s\n"
          , szCommand
          , szName
@@ -329,6 +333,8 @@ int main(int argc, char *argv[])
       printf(">> %s\n", szComments);
     }
   }
+  free(graph);
+  free(plan);
 }
 /********************** findCourse ***************************
 int findCourse(Graph graph, char szCourseId[])
