@@ -36,7 +36,7 @@ void setLevel(Graph graph, Plan plan, int iVertex, int iLevel)
     graph->vertexM[iVertex].iSemesterLevel = iLevel;
     
     // error checking
-    printf("Semester #%d | Vertex Index = %d | %s  %s\n", iLevel+1, iVertex
+    /*printf("Semester #%d | Vertex Index = %d | %s  %s\n", iLevel+1, iVertex
             , graph->vertexM[iVertex].szCourseId
-            , graph->vertexM[iVertex].szCourseName);
+            , graph->vertexM[iVertex].szCourseName);*/
 }

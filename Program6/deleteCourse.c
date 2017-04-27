@@ -41,8 +41,7 @@ void deleteCourse(Graph graph, int iVertex)
             {
                 if (ePrev == NULL)
                 {
-                    e->pNextEdge = NULL;
-                    graph->vertexM[i].prereqList = NULL;
+                    ePrev = e->pNextEdge;
                 }
                 else
                 {

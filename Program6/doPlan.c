@@ -38,9 +38,38 @@ void doPlan(Graph graph, Plan plan)
             if(j == 4 && plan->semesterM[iLevel][j] != -1)
                 isFullM[iLevel] = TRUE;
       }
-      //if(plan->semesterM[iLevel])
-          //plan->semesterM[iLevel + 1][0] = i;
+      if(isFullM[iLevel] == TRUE)
+      {
+          for(j = 0; j < 5; j++)
+          {
+              if(plan->semesterM[iLevel + 1][j] == -1)
+              {
+                 plan->semesterM[iLevel + 1][j] = i;
+                 break;
+              }
+          }
+      }
     }
   }
   printPlan(graph, plan);
+}
+/**************************** DistSource **************************************
+
+******************************************************************************/
+int DistSource(Graph graph, int iVertex)
+{
+    EdgeNode *e;
+    int iCount = 0;
+    int iFirst = 0;
+    // traverse to the adjacent vertices
+    //goes through successor lists
+    for (e = graph->vertexM[iVertex].prereqList; e != NULL; 
+        e = e->pNextEdge)
+    {
+        //within successor lists it takes each path
+        iCount = 1 + DistSource(graph, e->iPrereqVertex);
+        if(iCount > iFirst)
+            iFirst = iCount;
+    }
+    return iFirst;
 }
